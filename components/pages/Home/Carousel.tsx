@@ -1,8 +1,6 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -18,15 +16,13 @@ export default function Carousel() {
     return (
         <>
             <Swiper
-                cssMode={true}
                 navigation={true}
                 pagination={{
                     clickable: true,
                 }}
                 autoplay={{
-                    delay: 1200,
+                    delay: 5000,
                 }}
-                mousewheel={true}
                 keyboard={true}
                 modules={[
                     Navigation,
@@ -43,8 +39,7 @@ export default function Carousel() {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            className="object-cover"
-                            style={{ width: "100%", height: "auto" }}
+                            className="object-cover h-full w-full"
                             alt="Image for product"
                             priority={true}
                         />
@@ -57,13 +52,12 @@ export default function Carousel() {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            className="object-cover"
-                            style={{ width: "100%", height: "auto" }}
+                            className="object-cover h-full w-full"
                             alt="Image for product"
                             priority={true}
                         />
                     </div>
-                </SwiperSlide>{" "}
+                </SwiperSlide>
                 <SwiperSlide>
                     <div className="">
                         <Image
@@ -71,13 +65,12 @@ export default function Carousel() {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            className="object-cover"
-                            style={{ width: "100%", height: "auto" }}
+                            className="object-cover h-full w-full"
                             alt="Image for product"
                             priority={true}
                         />
                     </div>
-                </SwiperSlide>{" "}
+                </SwiperSlide>
                 <SwiperSlide>
                     <div className="">
                         <Image
@@ -85,13 +78,12 @@ export default function Carousel() {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            className="object-cover"
-                            style={{ width: "100%", height: "auto" }}
+                            className="object-cover h-full w-full"
                             alt="Image for product"
                             priority={true}
                         />
                     </div>
-                </SwiperSlide>{" "}
+                </SwiperSlide>
                 <SwiperSlide>
                     <div className="">
                         <Image
@@ -99,8 +91,7 @@ export default function Carousel() {
                             width={0}
                             height={0}
                             sizes="100vw"
-                            className="object-cover"
-                            style={{ width: "100%", height: "auto" }}
+                            className="object-cover h-full w-full"
                             alt="Image for product"
                             priority={true}
                         />

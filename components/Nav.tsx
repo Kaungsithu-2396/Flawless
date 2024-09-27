@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 export default function Nav() {
     const pathName = usePathname();
     const [openMenu, setOpenMenu] = useState<boolean>(false);
+    console.log("client side code is working on Nav");
     return (
         <>
             <nav className="flex md:flex-col relative gap-5 xl:flex-row justify-around  items-center mb-4 ">
@@ -24,6 +25,7 @@ export default function Nav() {
                             className=" w-[50%] xl:w-[70%] m-auto text-center lg:text-center "
                             src={"/flawlesslogo.png"}
                             alt="Logo for flawless"
+                            priority={true}
                         />
                     </Link>
 
@@ -62,7 +64,7 @@ export default function Nav() {
 
                 <div className="hidden xl:block md:flex md:justify-around  md:gap-6 md:items-center  w-[50%]">
                     {/* <div className="w-[300px] md:block hidden xl:hidden"></div> */}
-                    <ul className="flex justify-center gap-11 items-center text-2xl">
+                    <ul className="flex justify-center gap-11 items-center text-xl">
                         <li>
                             {" "}
                             <Link
