@@ -10,7 +10,7 @@ export default function Home() {
             <Carousel />
             <section className="my-5 ">
                 <span className="">
-                    <h1 className="text-2xl font-bold text-center">
+                    <h1 className="text-xl font-bold text-center">
                         Our <br />
                         Collections
                     </h1>
@@ -27,12 +27,10 @@ export default function Home() {
                                     width={100}
                                     height={100}
                                     alt="Category image"
-                                    className=" hover:scale-110 duration-200 delay-200 cursor-pointer xl:w-[50%]"
+                                    className=" w-[50%] m-auto hover:scale-110 duration-200 delay-200 cursor-pointer xl:w-[50%]"
                                 />
-                                <p className="font-semibold text-xl md:text-2xl">
-                                    Rings
-                                </p>
-                                <p className="  text-center text-sm xl:text-xl  text-orange-500 hover:font-bold transition-all duration-200 delay-150">
+                                <p className="font-semibold ">Rings</p>
+                                <p className="  text-center text-sm md:text-xl  text-orange-500 hover:font-bold transition-all duration-200 delay-150">
                                     {" "}
                                     <Link href={"/product/Rings"}>
                                         Explore More
@@ -62,7 +60,7 @@ export default function Home() {
             </section>
 
             <section className="my-4">
-                <h1 className="text-2xl pb-3 font-bold text-center">
+                <h1 className="text-xl pb-3 font-bold text-center">
                     Featured Products
                 </h1>
                 <div>
@@ -73,12 +71,12 @@ export default function Home() {
                                     className=" flex flex-col justify-center items-center"
                                     key={index}
                                 >
-                                    <div className="bg-[#f5f5f4]">
+                                    <div className="bg-[#f5f5f4] w-full">
                                         <Image
                                             src={"/category.png"}
-                                            width={200}
+                                            width={100}
                                             height={100}
-                                            className="    px- py-3  object-cover text-center "
+                                            className="  md:w-[50%] m-auto   px- py-3  object-cover text-center "
                                             alt="Product image"
                                         />
                                     </div>
@@ -86,8 +84,8 @@ export default function Home() {
                                         Diamond Ring
                                     </p>
 
-                                    <div className="py-5">
-                                        <p className="font-bold xl:text-2xl  text-xl text-center">
+                                    <div className="">
+                                        <p className="font-bold   md:text-xl text-center">
                                             ฿ 30000
                                         </p>
                                     </div>
@@ -97,7 +95,7 @@ export default function Home() {
                     </div>
                     <div className="flex justify-center items-center pt-3">
                         <Link href={"/product"}>
-                            <Button className="font-bold md:px-10 md:py-7 p-5  text-xl  rounded-md">
+                            <Button className="font-bold  p-5    rounded-md">
                                 Explore More
                             </Button>
                         </Link>

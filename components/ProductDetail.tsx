@@ -7,18 +7,18 @@ export default function ProductDetail() {
     const [count, setCount] = useState<number>(0);
     return (
         <div className=" m-12   grid grid-cols-1 xl:grid-cols-2 justify-content-center    gap-10">
-            <div className="">
+            <div className="relative">
                 <ProductImageZoom />
             </div>
             <div className=" flex flex-col gap-6">
                 <span>
-                    <h1 className="font-bold text-2xl">Diamong Ring</h1>
+                    <h1 className="font-bold text-xl">Diamong Ring</h1>
                     <h2 className="text-black/60">Yx8291ck</h2>
                 </span>
 
-                <p className="text-2xl font-bold">350000 B</p>
+                <p className="text-xl font-bold">350000 B</p>
                 <p className="text-xl">Stock : 1 Item</p>
-                <div className="flex justify-start gap-10 items-center my-4">
+                <div className="flex justify-start gap-10 items-center">
                     <button
                         className=" bg-[#D9d9d9] px-5 py-3 text-xl rounded-md"
                         onClick={() => setCount(count - 1)}
@@ -34,7 +34,7 @@ export default function ProductDetail() {
                     </button>
                 </div>
                 <span>
-                    <h3 className=" font-bold text-2xl">Description</h3>
+                    <h3 className=" font-bold text-xl">Description</h3>
                     <p className=" py-4 text-neutral-500 text-justify ">
                         Here is the brief description tested for developing the
                         design of flowless website which is going to be launched

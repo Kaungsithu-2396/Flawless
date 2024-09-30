@@ -5,7 +5,7 @@ export default function Default({ params }: any) {
     const totalItem = 100;
     const itemsPerPage = 12;
     const paginatedDotsCount = Math.ceil(totalItem / itemsPerPage);
-    console.log("params are", params);
+
     return (
         <>
             <div className="">

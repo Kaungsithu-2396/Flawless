@@ -31,8 +31,8 @@ export default function Product({ id, name }: { id: number; name: string }) {
                         />
                     )}
                     <div className="text-center my-5">
-                        <p className="text-xl">Diamond Ring "Y27181"</p>
-                        <p className="text-xl py-5 font-bold"> ฿ 45000</p>
+                        <p className="">Diamond Ring "Y27181"</p>
+                        <p className="py-5 font-bold"> ฿ 45000</p>
                     </div>
                 </div>
             </Link>

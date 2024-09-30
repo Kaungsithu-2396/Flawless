@@ -25,7 +25,7 @@ export default function page({
                     <span> {productName}</span>
                 </h1>
             </div>
-            <div className=" xl:w-2/3 m-auto ">
+            <div className=" xl:w-[80%] m-auto ">
                 <ProductDetail />
             </div>
             <div className=" m-12 h-screen">

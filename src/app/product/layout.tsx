@@ -19,12 +19,12 @@ export default function Layout({
         <section className="">
             {children}
             <div className="md:m-10 flex md:justify-between md:items-center flex-col md:flex-row justify-start m-4  ">
-                <h2 className="font-bold text-xl  my-3">Product Categories</h2>
+                <h2 className="font-bold   my-3">Product Categories</h2>
                 <div className="">
                     <select
                         name=""
                         id=""
-                        className="p-3 bg-slate-100 rounded-md border-black"
+                        className="p-3 bg-slate-100 rounded-md text-sm border-black"
                     >
                         <option value="">Sort By latest order</option>
                         <option value="">Sort By Price Low to High</option>
@@ -38,7 +38,7 @@ export default function Layout({
                         return (
                             <Accordion type="multiple" key={index}>
                                 <AccordionItem value="item-1">
-                                    <AccordionTrigger className="text-xl">
+                                    <AccordionTrigger className="text-sm">
                                         Rings
                                     </AccordionTrigger>
                                     <Link href={"/product/Rings/GoldRings"}>

@@ -15,14 +15,14 @@ export default function Nav() {
         <>
             <nav className="flex md:flex-col relative gap-5 xl:flex-row justify-around  items-center mb-4 ">
                 <div className=" mt-5  md:m-0 flex gap-5 flex-row-reverse justify-evenly md:justify-between md:my-4 xl:my-0 xl:w-auto md:w-full items-center">
-                    <div className="xl:hidden block text-2xl md:text-4xl mx-3">
+                    <div className="xl:hidden block text-xl md:text-2xl mx-3">
                         <FiShoppingCart />
                     </div>
                     <Link href={"/"}>
                         <Image
                             width={300}
                             height={108}
-                            className=" w-[50%] xl:w-[70%] m-auto text-center lg:text-center "
+                            className=" w-[50%] m-auto text-center lg:text-center "
                             src={"/flawlesslogo.png"}
                             alt="Logo for flawless"
                             priority={true}
@@ -64,7 +64,7 @@ export default function Nav() {
 
                 <div className="hidden xl:block md:flex md:justify-around  md:gap-6 md:items-center  w-[50%]">
                     {/* <div className="w-[300px] md:block hidden xl:hidden"></div> */}
-                    <ul className="flex justify-center gap-11 items-center text-xl ">
+                    <ul className="flex text-xl justify-center gap-11 items-center ">
                         <li className="hover:font-bold duration-200 delay-200">
                             {" "}
                             <Link
@@ -93,20 +93,20 @@ export default function Nav() {
                     </ul>
                 </div>
                 {/* //desktop */}
-                <div className="hidden  mx-4 xl:block">
+                <div className="hidden   m-4 xl:block">
                     <ul className="flex gap-5  justify-center items-center">
-                        <li className="text-xl flex justify-center items-center cursor-pointer relative">
+                        <li className=" flex justify-center items-center cursor-pointer relative">
                             {" "}
                             <input
                                 type="text"
                                 name=""
-                                className=" w-[300px] px-9 py-3 border-2 broder-black rounded-md"
+                                className="px-9 py-3 border-2 broder-black rounded-md"
                                 id=""
                                 placeholder="search"
                             />
-                            <IoIosSearch className="absolute left-2 text-2xl" />
+                            <IoIosSearch className="absolute left-2 text-xl" />
                         </li>
-                        <li className="text-3xl">
+                        <li className="text-2xl">
                             {" "}
                             <FiShoppingCart />
                         </li>
