@@ -34,7 +34,9 @@ export default function Home() {
                                 </p>
                                 <p className="  text-center text-sm xl:text-xl  text-orange-500 hover:font-bold transition-all duration-200 delay-150">
                                     {" "}
-                                    <Link href={"/"}>Explore More</Link>{" "}
+                                    <Link href={"/product/Rings"}>
+                                        Explore More
+                                    </Link>{" "}
                                 </p>
                             </div>
                         );
@@ -94,9 +96,11 @@ export default function Home() {
                         })}
                     </div>
                     <div className="flex justify-center items-center pt-3">
-                        <Button className="font-bold md:px-10 md:py-7 p-5  text-xl  rounded-md">
-                            Explore More
-                        </Button>
+                        <Link href={"/product"}>
+                            <Button className="font-bold md:px-10 md:py-7 p-5  text-xl  rounded-md">
+                                Explore More
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -139,9 +143,6 @@ export default function Home() {
                     className="px-4"
                 />
             </section> */}
-            <section className="m-5 ">
-                <Payment />
-            </section>
         </>
     );
 }

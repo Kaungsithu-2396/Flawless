@@ -64,8 +64,8 @@ export default function Nav() {
 
                 <div className="hidden xl:block md:flex md:justify-around  md:gap-6 md:items-center  w-[50%]">
                     {/* <div className="w-[300px] md:block hidden xl:hidden"></div> */}
-                    <ul className="flex justify-center gap-11 items-center text-xl">
-                        <li>
+                    <ul className="flex justify-center gap-11 items-center text-xl ">
+                        <li className="hover:font-bold duration-200 delay-200">
                             {" "}
                             <Link
                                 href={"/"}
@@ -76,7 +76,7 @@ export default function Nav() {
                                 Home
                             </Link>
                         </li>
-                        <li>
+                        <li className="hover:font-bold duration-200 delay-200">
                             {" "}
                             <Link
                                 href={"/product"}
@@ -87,7 +87,7 @@ export default function Nav() {
                                 Product
                             </Link>
                         </li>
-                        <li>
+                        <li className="hover:font-bold duration-200 delay-200">
                             <Link href={"/"}>Contact</Link>
                         </li>
                     </ul>
@@ -100,7 +100,7 @@ export default function Nav() {
                             <input
                                 type="text"
                                 name=""
-                                className=" w-[300px] px-9 py-3 rounded-md"
+                                className=" w-[300px] px-9 py-3 border-2 broder-black rounded-md"
                                 id=""
                                 placeholder="search"
                             />
