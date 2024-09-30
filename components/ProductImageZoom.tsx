@@ -17,7 +17,9 @@ export default function ProductImageZoom() {
     };
     const handleImageUrl = (e: any) => {
         setItemUrl(e.currentTarget.src);
+        console.log(itemUrl);
     };
+
     return (
         <>
             <div
@@ -33,7 +35,7 @@ export default function ProductImageZoom() {
                     width={900}
                     height={200}
                     alt="Product detail image"
-                    className="rounded-md xl:w-full w-full  img-zoom  "
+                    className="rounded-md xl:w-full   img-zoom  "
                     onClick={handleImageUrl}
                 />
 
