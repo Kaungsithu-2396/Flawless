@@ -1,21 +1,19 @@
 import React, { Key } from "react";
 import PaginationList from "../../../../components/PaginationList";
 import Product from "../../../../components/Product";
+import { product } from "../../../../types";
+import { data } from "../../../../data";
 export default function Default({ params }: any) {
-    const totalItem = 100;
+    const totalItem = data.length;
     const itemsPerPage = 12;
     const paginatedDotsCount = Math.ceil(totalItem / itemsPerPage);
-
+    const products: product[] = [...data];
     return (
         <>
             <div className="">
                 <div className="grid md:grid-cols-3 xl:grid-cols-4 grid-cols-2 gap-6 mx-4">
-                    {[...Array(12)].map((_, index) => {
-                        return (
-                            <div className="" key={index}>
-                                <Product id={index + 1} name="Diamond Ring" />
-                            </div>
-                        );
+                    {products.map((el: product, index: Key) => {
+                        return <Product {...el} key={el.id} />;
                     })}
                 </div>
 

@@ -1,8 +1,21 @@
 "use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-export default function Product({ id, name }: { id: number; name: string }) {
+import { product } from "../types";
+export default function Product({
+    id,
+    name,
+    count,
+    productCode,
+    mainCategory,
+    productImages,
+    subCategory,
+    stock,
+    price,
+    description,
+}: product) {
     const [toggleImg, setToggleImg] = useState<boolean>(true);
 
     return (
@@ -11,7 +24,7 @@ export default function Product({ id, name }: { id: number; name: string }) {
                 <div className="">
                     {toggleImg ? (
                         <Image
-                            src={"/product-img-.jpg"}
+                            src={productImages[0]}
                             width={250}
                             height={100}
                             alt="product image "
@@ -21,7 +34,7 @@ export default function Product({ id, name }: { id: number; name: string }) {
                         />
                     ) : (
                         <Image
-                            src={"/product-img-1.jpeg"}
+                            src={productImages[1]}
                             width={250}
                             height={100}
                             alt="product image "
@@ -31,8 +44,10 @@ export default function Product({ id, name }: { id: number; name: string }) {
                         />
                     )}
                     <div className="text-center my-5">
-                        <p className="">Diamond Ring "Y27181"</p>
-                        <p className="py-5 font-bold"> ฿ 45000</p>
+                        <p className="">
+                            {name} {productCode}
+                        </p>
+                        <p className="py-5 font-bold"> ฿ {price}</p>
                     </div>
                 </div>
             </Link>

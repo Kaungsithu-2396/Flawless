@@ -3,21 +3,34 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
-import { FiShoppingCart } from "react-icons/fi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import ShoppingCart from "./ShoppingCart";
+import { RxCross1 } from "react-icons/rx";
+import CartDetail from "./CartDetail";
+import { product } from "../types";
 
 export default function Nav() {
     const pathName = usePathname();
     const [openMenu, setOpenMenu] = useState<boolean>(false);
-    console.log("client side code is working on Nav");
+    const [cartOpen, setCartOpen] = useState<boolean>(false);
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+    console.log(cartItems);
     return (
         <>
             <nav className="flex md:flex-col relative gap-5 xl:flex-row justify-around  items-center mb-4 ">
                 <div className=" mt-5  md:m-0 flex gap-5 flex-row-reverse justify-evenly md:justify-between md:my-4 xl:my-0 xl:w-auto md:w-full items-center">
-                    <div className="xl:hidden block text-xl md:text-2xl mx-3">
-                        <FiShoppingCart />
+                    <div
+                        className="xl:hidden relative cursor-pointer  block text-xl md:text-2xl mx-3"
+                        onClick={() => setCartOpen(true)}
+                    >
+                        {/* <FiShoppingCart />
+                        <span className="abs">0</span> */}
+                        <ShoppingCart cartItems={cartItems} />
                     </div>
+
                     <Link href={"/"}>
                         <Image
                             width={300}
@@ -64,7 +77,7 @@ export default function Nav() {
 
                 <div className="hidden xl:block md:flex md:justify-around  md:gap-6 md:items-center  w-[50%]">
                     {/* <div className="w-[300px] md:block hidden xl:hidden"></div> */}
-                    <ul className="flex text-xl justify-center gap-11 items-center ">
+                    <ul className="flex  justify-center gap-11 items-center ">
                         <li className="hover:font-bold duration-200 delay-200">
                             {" "}
                             <Link
@@ -106,14 +119,51 @@ export default function Nav() {
                             />
                             <IoIosSearch className="absolute left-2 text-xl" />
                         </li>
-                        <li className="text-2xl">
+                        <li className="text-2xl cursor-pointer ">
                             {" "}
-                            <FiShoppingCart />
+                            <div
+                                className="relative flex justify-center items-center "
+                                onClick={() => setCartOpen(true)}
+                            >
+                                <ShoppingCart cartItems={cartItems} />
+                            </div>
                         </li>
                     </ul>
                 </div>
                 {/* //desktop */}
             </nav>
+            {/* Cart */}
+            {cartOpen && (
+                <>
+                    {" "}
+                    <div className="fixed top-0 w-[90%] xl:w-[40%] z-50 right-0 bg-white h-screen overflow-scroll">
+                        <span className="flex justify-between  m-6 md:m-12 items-center">
+                            <h1 className="font-bold  md:text-xl  ">
+                                Shopping Cart ({cartItems.length})
+                            </h1>
+                            <span
+                                onClick={() => setCartOpen(false)}
+                                className="cursor-pointer"
+                            >
+                                <RxCross1 />
+                            </span>
+                        </span>
+                        <hr />
+                        {cartItems.length > 0 ? (
+                            cartItems.map((el: product, index) => {
+                                return <CartDetail cart={el} />;
+                            })
+                        ) : (
+                            <h1>no item exisits</h1>
+                        )}
+                    </div>
+                    <div
+                        className=" fixed   top-0 z-50 w-[10%] xl:w-[60%] h-screen bg-black/30"
+                        onClick={() => setCartOpen(false)}
+                    ></div>
+                </>
+            )}
+            {/* Cart */}
         </>
     );
 }

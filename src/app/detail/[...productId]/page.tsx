@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { Toaster } from "@/components/ui/sonner";
 import { useSearchParams } from "next/navigation";
 import ProductDetail from "../../../../components/ProductDetail";
 import RelatedProducts from "../../../../components/RelatedProducts";
+import { data } from "../../../../data";
 export default function page({
     params,
 }: {
@@ -13,8 +15,12 @@ export default function page({
 }) {
     const searchParams = useSearchParams();
     const productName = searchParams.get("name");
+    const itemDetail =
+        data.find((el) => el.id === Number(params.productId)) || undefined;
+    console.log(itemDetail);
     return (
         <section className="">
+            <Toaster />
             <div className="w-screen bg-[#353839] text-white p-5">
                 <h1 className="">
                     <Link href={"/"}>Home </Link> /{" "}
@@ -26,7 +32,7 @@ export default function page({
                 </h1>
             </div>
             <div className=" xl:w-[80%] m-auto ">
-                <ProductDetail />
+                <ProductDetail product={itemDetail} />
             </div>
             <div className=" m-12 h-screen">
                 <p className="text-2xl font-bold">You might also like</p>

@@ -2,8 +2,9 @@
 import { useState } from "react";
 import React from "react";
 import Image from "next/image";
-export default function ProductImageZoom() {
-    const [itemUrl, setItemUrl] = useState("/product-detail-1.jpeg");
+export default function ProductImageZoom({ images }: { images: string[] }) {
+    const [img1, img2, img3] = images;
+    const [itemUrl, setItemUrl] = useState(img1);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [showZoomImage, setShowZoomImage] = useState(false);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -35,7 +36,7 @@ export default function ProductImageZoom() {
                     width={900}
                     height={200}
                     alt="Product detail image"
-                    className="rounded-md xl:w-full   img-zoom  "
+                    className="rounded-md md:w-full   img-zoom  "
                     onClick={handleImageUrl}
                 />
 
@@ -58,19 +59,19 @@ export default function ProductImageZoom() {
 
             <div className="my-3 flex justify-start gap-4 items-center">
                 <img
-                    src="/product-img-1.jpeg"
+                    src={img1}
                     alt=""
                     className="xl:w-[100px] xl:h-[100px] w-[90px] h-[80px] rounded-md hover:opacity-50 duration-150 delay-150"
                     onClick={handleImageUrl}
                 />
                 <img
-                    src="/product-img-.jpg"
+                    src={img2}
                     alt=""
                     className="xl:w-[100px] xl:h-[100px] w-[90px] h-[80px] rounded-md hover:opacity-50 duration-150 delay-150"
                     onClick={handleImageUrl}
                 />
                 <img
-                    src="/product-detail-1.jpeg"
+                    src={img3}
                     alt=""
                     className="xl:w-[100px] xl:h-[100px] w-[90px] h-[80px] rounded-md hover:opacity-50 duration-150 delay-150"
                     onClick={handleImageUrl}
