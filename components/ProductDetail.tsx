@@ -15,7 +15,7 @@ export default function ProductDetail({ product }: { product?: product }) {
         return;
     }
     const stock = product.stock;
-    const [disable, setDisable] = useState<boolean>(false);
+
     const [count, setCount] = useState<number>(1);
     const dispatch = useDispatch();
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -45,11 +45,11 @@ export default function ProductDetail({ product }: { product?: product }) {
                 onClick: () => console.log("Undo"),
             },
         });
-        setDisable(true);
     };
     return (
         <>
             <div className=" m-12   grid grid-cols-1  lg:grid-cols-2 justify-content-center    gap-10">
+                
                 <div className="">
                     <ProductImageZoom images={product.productImages} />
                 </div>
@@ -83,26 +83,14 @@ export default function ProductDetail({ product }: { product?: product }) {
                         </p>
                     </span>
                     <span className="  flex  flex-col gap-5 md:flex-row xl:gap-9">
-                        {disable ? (
-                            <button
-                                className="px-5 py-3 bg-[#22876980] hover:font-bold cursor-not-allowed duration-200 delay-200 text-white rounded-md"
-                                onClick={handleAddToCart}
-                                disabled={disable}
-                            >
-                                <span className="flex justify-center items-center gap-3">
-                                    <FaCartShopping /> Added
-                                </span>
-                            </button>
-                        ) : (
-                            <button
-                                className="px-5 py-3 bg-[#228769] hover:font-bold duration-200 delay-200 text-white rounded-md"
-                                onClick={handleAddToCart}
-                            >
-                                <span className="flex justify-center items-center gap-3">
-                                    <FaCartShopping /> Add to Cart
-                                </span>
-                            </button>
-                        )}
+                        <button
+                            className="px-5 py-3 bg-[#228769] hover:font-bold duration-200 delay-200 text-white rounded-md"
+                            onClick={handleAddToCart}
+                        >
+                            <span className="flex justify-center items-center gap-3">
+                                <FaCartShopping /> Add to Cart
+                            </span>
+                        </button>
 
                         <button className="px-8 py-3 hover:font-bold duration-200 delay-200 bg-black text-white rounded-md">
                             Buy Now

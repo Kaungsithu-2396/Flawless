@@ -1,10 +1,20 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { product } from "../types";
+import { useDispatch } from "react-redux";
+import { increaseCount, removeFromCart } from "../redux/slices/cartSlice";
 export default function CartDetail({ cart }: { cart: product }) {
+    const dispatch = useDispatch();
     return (
         <>
             <div className=" m-6 md-12 flex justify-center gap-5  items-center">
+                <div
+                    className=" cursor-pointer"
+                    onClick={() => dispatch(removeFromCart({ id: cart.id }))}
+                >
+                    x
+                </div>
                 <div>
                     <Image
                         src={cart.productImages[0]}
@@ -20,7 +30,10 @@ export default function CartDetail({ cart }: { cart: product }) {
                         -
                     </button>
                     <p>{cart.count}</p>
-                    <button className="bg-[#d9d9d9] px-3 py-1 md:px-5 md:py-3 rounded-md">
+                    <button
+                        className="bg-[#d9d9d9] px-3 py-1 md:px-5 md:py-3 rounded-md"
+                        onClick={() => dispatch(increaseCount({ id: cart.id }))}
+                    >
                         +
                     </button>
                 </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, Key, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosSearch } from "react-icons/io";
@@ -16,8 +16,8 @@ export default function Nav() {
     const pathName = usePathname();
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [cartOpen, setCartOpen] = useState<boolean>(false);
-    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-    console.log(cartItems);
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems) ;
+
     return (
         <>
             <nav className="flex md:flex-col relative gap-5 xl:flex-row justify-around  items-center mb-4 ">
@@ -26,8 +26,6 @@ export default function Nav() {
                         className="xl:hidden relative cursor-pointer  block text-xl md:text-2xl mx-3"
                         onClick={() => setCartOpen(true)}
                     >
-                        {/* <FiShoppingCart />
-                        <span className="abs">0</span> */}
                         <ShoppingCart cartItems={cartItems} />
                     </div>
 
@@ -150,11 +148,16 @@ export default function Nav() {
                         </span>
                         <hr />
                         {cartItems.length > 0 ? (
-                            cartItems.map((el: product, index) => {
+                            cartItems.map((el: product, index: Key) => {
                                 return <CartDetail cart={el} />;
                             })
                         ) : (
-                            <h1>no item exisits</h1>
+                            <div className="flex flex-col h-screen justify-center items-center">
+                                <h1 className="text-center">no item exisits</h1>
+                                <Link href={"/product"} className="underline">
+                                    Explore
+                                </Link>
+                            </div>
                         )}
                     </div>
                     <div
