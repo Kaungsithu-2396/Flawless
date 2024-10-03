@@ -5,20 +5,22 @@ import ProductImageZoom from "./ProductImageZoom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
-import { UseSelector } from "react-redux";
+import { buyNow } from "../redux/slices/buyNowItemSlice";
+import { useRouter } from "next/navigation";
 import { addToCart } from "../redux/slices/cartSlice";
 import { product } from "../types";
 import { RootState } from "../redux/store";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function ProductDetail({ product }: { product?: product }) {
     if (!product) {
         return;
     }
     const stock = product.stock;
-
+    const router = useRouter();
     const [count, setCount] = useState<number>(1);
     const dispatch = useDispatch();
-    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
     const handleIncrease = () => {
         if (count >= stock) {
             alert("you exceed our stock item");
@@ -46,10 +48,13 @@ export default function ProductDetail({ product }: { product?: product }) {
             },
         });
     };
+    const buyNowHandler = () => {
+        dispatch(buyNow(product));
+        router.push("/checkout");
+    };
     return (
         <>
             <div className=" m-12   grid grid-cols-1  lg:grid-cols-2 justify-content-center    gap-10">
-                
                 <div className="">
                     <ProductImageZoom images={product.productImages} />
                 </div>
@@ -92,7 +97,10 @@ export default function ProductDetail({ product }: { product?: product }) {
                             </span>
                         </button>
 
-                        <button className="px-8 py-3 hover:font-bold duration-200 delay-200 bg-black text-white rounded-md">
+                        <button
+                            className="px-8 py-3 hover:font-bold duration-200 delay-200 bg-black text-white rounded-md"
+                            onClick={buyNowHandler}
+                        >
                             Buy Now
                         </button>
                     </span>

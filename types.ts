@@ -15,4 +15,12 @@ export interface category {
     name: string;
     subCategories: string[];
 }
-
+export interface checkoutForm {
+    name: string;
+    email: string;
+    installmentPlan: boolean;
+    phone: number;
+    zipCode: number;
+    lineId: string;
+    additionalMessage: string;
+}

@@ -15,6 +15,7 @@ export default function page({
 }) {
     const searchParams = useSearchParams();
     const productName = searchParams.get("name");
+
     const itemDetail =
         data.find((el) => el.id === Number(params.productId)) || undefined;
     console.log(itemDetail);
@@ -34,7 +35,7 @@ export default function page({
             <div className=" xl:w-[80%] m-auto ">
                 <ProductDetail product={itemDetail} />
             </div>
-            <div className=" m-12 h-screen">
+            <div className=" m-12 ">
                 <p className="text-2xl font-bold">You might also like</p>
                 <RelatedProducts />
             </div>

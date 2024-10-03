@@ -11,13 +11,19 @@ import ShoppingCart from "./ShoppingCart";
 import { RxCross1 } from "react-icons/rx";
 import CartDetail from "./CartDetail";
 import { product } from "../types";
+import { Button } from "@/components/ui/button";
 
 export default function Nav() {
     const pathName = usePathname();
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [cartOpen, setCartOpen] = useState<boolean>(false);
-    const cartItems = useSelector((state: RootState) => state.cart.cartItems) ;
-
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+    const totalPriceCollection = cartItems.map(
+        (el: product) => el.price * el.count
+    );
+    const totalAmount = totalPriceCollection.reduce((acc, value) => {
+        return acc + value;
+    }, 0);
     return (
         <>
             <nav className="flex md:flex-col relative gap-5 xl:flex-row justify-around  items-center mb-4 ">
@@ -159,6 +165,20 @@ export default function Nav() {
                                 </Link>
                             </div>
                         )}
+                        <div className="m-6   flex justify-between items-center ">
+                            <p className="text-xl">Total</p>
+                            <p>{totalAmount} ฿</p>
+                        </div>
+                        <div className="w-full px-3 mb-5">
+                            <Link href={"/checkout"}>
+                                <Button
+                                    className="w-full "
+                                    onClick={() => setCartOpen(false)}
+                                >
+                                    Check out
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                     <div
                         className=" fixed   top-0 z-50 w-[10%] xl:w-[60%] h-screen bg-black/30"

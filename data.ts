@@ -3,7 +3,7 @@ import { category, product } from "./types";
 export const data: product[] = [
     {
         id: 1,
-        count: 0,
+        count: 6,
         name: "Diamond Ring",
         productCode: "x28xyfk1",
         mainCategory: "Gold",
@@ -21,7 +21,7 @@ export const data: product[] = [
     },
     {
         id: 2,
-        count: 0,
+        count: 1,
         name: "Diamond Ring",
         productCode: "x28xyfk1",
         mainCategory: "Gold",
@@ -39,7 +39,7 @@ export const data: product[] = [
     {
         id: 3,
         price: 20000,
-        count: 0,
+        count: 1,
         name: "Diamond Ring",
         productCode: "x28xyfk1",
         mainCategory: "Gold",
@@ -55,7 +55,7 @@ export const data: product[] = [
     },
     {
         id: 4,
-        count: 0,
+        count: 1,
         price: 20000,
         name: "Diamond Ring",
         productCode: "x28xyfk1",
@@ -72,7 +72,7 @@ export const data: product[] = [
     },
     {
         id: 5,
-        count: 0,
+        count: 1,
         price: 20000,
         name: "Diamond Ring",
         productCode: "x28xyfk1",
@@ -89,7 +89,7 @@ export const data: product[] = [
     },
     {
         id: 6,
-        count: 0,
+        count: 1,
         price: 20000,
         name: "Diamond Ring",
         productCode: "x28xyfk1",

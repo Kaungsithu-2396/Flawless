@@ -2,10 +2,13 @@
 import React from "react";
 import Image from "next/image";
 import { product } from "../types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { increaseCount, removeFromCart } from "../redux/slices/cartSlice";
+import { Button } from "@/components/ui/button";
+import { RootState } from "../redux/store";
 export default function CartDetail({ cart }: { cart: product }) {
     const dispatch = useDispatch();
+
     return (
         <>
             <div className=" m-6 md-12 flex justify-center gap-5  items-center">
@@ -42,6 +45,8 @@ export default function CartDetail({ cart }: { cart: product }) {
                     {cart.price * cart.count} B
                 </p>
             </div>
+            <hr />
+          
         </>
     );
 }

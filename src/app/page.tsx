@@ -15,11 +15,11 @@ export default function Home() {
                         Collections
                     </h1>
                 </span>
-                <section className=" xl:w-2/3 xl:m-auto md:w-auto py-5 mx-2 grid grid-cols-3 md:grid-cols-3  justify-center items-center gap-2 md:gap-4 md:mx-8">
-                    {[...Array(6)].map((_, index) => {
+                <section className="  md:w-auto py-5 mx-2 grid grid-cols-3 md:grid-cols-4  justify-center items-center gap-2 md:gap-4 md:mx-8">
+                    {[...Array(4)].map((_, index) => {
                         return (
                             <div
-                                className=" w-full flex flex-col justify-center items-center gap-3 rounded-md bg-[#f5f4f4] px-5 md:px-0 py-4 md:py-3 mx-0 md:mx-5"
+                                className=" w-full xl:gap-0 flex flex-col justify-center items-center gap-3 rounded-md bg-[#f5f4f4] px-5 md:px-0 py-4 md:py-3 mx-0 md:mx-5"
                                 key={index}
                             >
                                 <Image
@@ -27,10 +27,10 @@ export default function Home() {
                                     width={100}
                                     height={100}
                                     alt="Category image"
-                                    className=" w-[50%] m-auto hover:scale-110 duration-200 delay-200 cursor-pointer xl:w-[50%]"
+                                    className=" w-[50%] m-auto hover:scale-110 duration-200 delay-200 cursor-pointer xl:w-[40%] "
                                 />
                                 <p className="font-semibold ">Rings</p>
-                                <p className="  text-center text-sm md:text-xl  text-orange-500 hover:font-bold transition-all duration-200 delay-150">
+                                <p className="  text-center text-sm   text-orange-500 hover:font-bold transition-all duration-200 delay-150">
                                     {" "}
                                     <Link href={"/product/Rings"}>
                                         Explore More

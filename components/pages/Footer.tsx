@@ -3,9 +3,9 @@ import { FaFacebook, FaInstagram, FaCopyright } from "react-icons/fa";
 import Link from "next/link";
 export default function Footer() {
     return (
-        <footer className="bg-white px-2 py-10  mt-5 hidden md:block">
+        <footer className="bg-white px-2 py-4  mt-5 hidden md:block">
             <div className="flex justify-around items-center">
-                <div className="font-bold flex justify-center items-center gap-8">
+                <div className=" flex justify-center items-center gap-8">
                     <p>Installment Plan</p>
                     <Link href={"/contact"}>
                         <p>Contact</p>
@@ -21,7 +21,7 @@ export default function Footer() {
                     </p>
                 </div>
                 <div className="w-1 h-8 bg-black"></div>
-                <div className="font-bold flex justify-center items-center gap-8">
+                <div className=" flex justify-center items-center gap-8">
                     <p>
                         <FaCopyright />
                     </p>
