@@ -23,4 +23,5 @@ export interface checkoutForm {
     zipCode: number;
     lineId: string;
     additionalMessage: string;
+    address: string;
 }

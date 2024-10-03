@@ -12,7 +12,14 @@ export const cartSlice = createSlice({
             const itemIdx = state.cartItems.findIndex(
                 (el: product) => el.id === action.payload.id
             );
+            const controlCount = state.cartItems.find(
+                (el: product) => el.id === action.payload.id
+            );
             //@ts-ignore
+            if (controlCount?.count >= controlCount?.stock) {
+                alert("stock exceed");
+                return;
+            }
             if (itemIdx >= 0) {
                 state.cartItems[itemIdx].count += 1;
             } else {

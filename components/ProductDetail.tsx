@@ -39,14 +39,15 @@ export default function ProductDetail({ product }: { product?: product }) {
             ...product,
             count,
         };
-        dispatch(addToCart(itemToAdd));
-        toast("Add to Cart", {
-            description: "Product  has successfully added",
-            action: {
-                label: "Undo",
-                onClick: () => console.log("Undo"),
-            },
-        });
+        if (dispatch(addToCart(itemToAdd))) {
+            toast("Add to Cart", {
+                description: "Product  has successfully added",
+                action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                },
+            });
+        }
     };
     const buyNowHandler = () => {
         dispatch(buyNow(product));

@@ -3,18 +3,22 @@ import React from "react";
 import Image from "next/image";
 import { product } from "../types";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 import { increaseCount, removeFromCart } from "../redux/slices/cartSlice";
 import { Button } from "@/components/ui/button";
 import { RootState } from "../redux/store";
 export default function CartDetail({ cart }: { cart: product }) {
     const dispatch = useDispatch();
-
+    const router = useRouter();
     return (
         <>
-            <div className=" m-6 md-12 flex justify-center gap-5  items-center">
+            <div className=" m-3 flex justify-center gap-5  items-center">
                 <div
                     className=" cursor-pointer"
-                    onClick={() => dispatch(removeFromCart({ id: cart.id }))}
+                    onClick={() => {
+                        dispatch(removeFromCart({ id: cart.id }));
+                        router.push("/product");
+                    }}
                 >
                     x
                 </div>
@@ -46,7 +50,6 @@ export default function CartDetail({ cart }: { cart: product }) {
                 </p>
             </div>
             <hr />
-          
         </>
     );
 }

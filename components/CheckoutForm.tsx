@@ -136,6 +136,25 @@ export default function CheckoutForm() {
                 <span>
                     <label htmlFor="">
                         {" "}
+                        Address <span className=" text-red-500">*</span>{" "}
+                    </label>
+                    <Input
+                        type="text"
+                        placeholder="Address"
+                        className="mt-2"
+                        {...register("address", {
+                            required: "invalid address",
+                        })}
+                    />
+                    {errors.address?.type === "required" && (
+                        <p className="text-red-500">
+                            {errors.address?.message}
+                        </p>
+                    )}
+                </span>
+                <span>
+                    <label htmlFor="">
+                        {" "}
                         Zip Code <span className=" text-red-500">*</span>{" "}
                     </label>
                     <Input
