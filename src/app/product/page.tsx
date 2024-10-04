@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { RiH3 } from "react-icons/ri";
+
 export default function page() {
-    const searchParams = useSearchParams();
-    const search = searchParams.get("name");
-    console.log(search);
     return (
         <>
             <div className="w-screen bg-[#353839] text-white p-5">
