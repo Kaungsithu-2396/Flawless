@@ -64,8 +64,8 @@ export default function Home() {
                     Featured Products
                 </h1>
                 <div>
-                    <div className=" w-2/3 m-auto my-6 grid grid-cols-2 gap-4 md:gap-4 md:grid-cols-3 xl:grid-cols-4 ">
-                        {[...Array(8)].map((_, index: Key) => {
+                    <div className=" w-2/3 m-auto my-6 grid grid-cols-2 gap-4 md:gap-4 md:grid-cols-3 xl:grid-cols-3 ">
+                        {[...Array(6)].map((_, index: Key) => {
                             return (
                                 <div
                                     className=" flex flex-col justify-center items-center"
@@ -102,45 +102,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <hr />
-
-            {/* <section className=" my-5 h-screen">
-                <h1 className="font-bold text-2xl">Accepted payments</h1>
-                <Image
-                    src={"/logos/kbank_logo.png"}
-                    width={100}
-                    height={100}
-                    alt="Accepted payments"
-                />
-                <Image
-                    src={"/logos/Bkk_bank.jpg"}
-                    width={200}
-                    height={200}
-                    alt="Accepted payments"
-                    className="px-4"
-                />
-                <Image
-                    src={"/logos/SCB_logo.jpg"}
-                    width={200}
-                    height={200}
-                    alt="Accepted payments"
-                    className="px-4"
-                />
-                <Image
-                    src={"/logos/PromptPay-logo.png"}
-                    width={200}
-                    height={200}
-                    alt="Accepted payments"
-                    className="px-4"
-                />
-                <Image
-                    src={"/logos/kbz-logo.png"}
-                    width={200}
-                    height={200}
-                    alt="Accepted payments"
-                    className="px-4"
-                />
-            </section> */}
         </>
     );
 }

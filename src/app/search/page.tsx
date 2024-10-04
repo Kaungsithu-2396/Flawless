@@ -2,11 +2,9 @@
 import React from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { RiH3 } from "react-icons/ri";
 export default function page() {
-    const searchParams = useSearchParams();
-    const search = searchParams.get("name");
-    console.log(search);
+    const params = useSearchParams();
+    const searchItem = params.get("name");
     return (
         <>
             <div className="w-screen bg-[#353839] text-white p-5">
@@ -14,13 +12,18 @@ export default function page() {
                     <Link href={"/"}>Home </Link> /{" "}
                     <Link href={"/product"}>
                         {" "}
-                        <span className="font-bold">Products</span>
+                        <span className="font-bold">Products /</span>
                     </Link>{" "}
+                    <span className="font-bold"> "{searchItem}" </span>
                 </h1>
             </div>
             <div className="md:m-10 flex md:justify-between md:items-center flex-col gap-3 md:flex-row justify-start m-4  ">
                 <h2 className="font-bold hidden md:block   my-3">
                     Product Categories
+                </h2>
+                <h2 className=" hidden md:block   my-3">
+                    search result for{" "}
+                    <span className="font-bold text-xl">"{searchItem}"</span>
                 </h2>
 
                 <div className="">

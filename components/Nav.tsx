@@ -11,13 +11,32 @@ import ShoppingCart from "./ShoppingCart";
 import { RxCross1 } from "react-icons/rx";
 import CartDetail from "./CartDetail";
 import { product } from "../types";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-
+import { category } from "../types";
+import { categories } from "../data";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 export default function Nav() {
     const pathName = usePathname();
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [cartOpen, setCartOpen] = useState<boolean>(false);
+    const [searchTerm, setSearchTerm] = useState<string>("");
+    const router = useRouter();
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            router.push(`/search/?name=${searchTerm}`);
+            setSearchTerm("");
+        }
+    };
+    const handleSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(e.target.value);
+    };
     const totalPriceCollection = cartItems.map(
         (el: product) => el.price * el.count
     );
@@ -66,11 +85,59 @@ export default function Nav() {
                                     <input
                                         type="text"
                                         name=""
+                                        onKeyDown={handleKeyDown}
                                         placeholder="Search"
                                         id=""
+                                        value={searchTerm}
                                         size={30}
                                         className="p-2 w-[90%] border-black border-2 rounded-md"
+                                        onChange={handleSearchTerm}
                                     />
+                                    <span className="my-6 py-4">
+                                        {categories.map(
+                                            (el: category, index) => {
+                                                return (
+                                                    <Accordion
+                                                        type="multiple"
+                                                        key={index}
+                                                    >
+                                                        <AccordionItem value="item-1">
+                                                            <AccordionTrigger className="text-sm">
+                                                                {el.name}
+                                                            </AccordionTrigger>
+                                                            {el.subCategories.map(
+                                                                (
+                                                                    item: string,
+                                                                    index
+                                                                ) => {
+                                                                    return (
+                                                                        <>
+                                                                            <Link
+                                                                                href={`/product/${el.name}/${item}`}
+                                                                            >
+                                                                                <AccordionContent className="mx-5">
+                                                                                    {
+                                                                                        item
+                                                                                    }
+                                                                                </AccordionContent>
+                                                                            </Link>
+                                                                        </>
+                                                                    );
+                                                                }
+                                                            )}
+                                                        </AccordionItem>
+                                                    </Accordion>
+                                                );
+                                            }
+                                        )}
+                                    </span>
+                                    <div className="my-4">
+                                        <span className="py-5 text-sm">
+                                            <Link href={"/contact"}>
+                                                Contact
+                                            </Link>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +172,7 @@ export default function Nav() {
                             </Link>
                         </li>
                         <li className="hover:font-bold duration-200 delay-200">
-                            <Link href={"/"}>Contact</Link>
+                            <Link href={"/contact"}>Contact</Link>
                         </li>
                     </ul>
                 </div>
@@ -119,7 +186,10 @@ export default function Nav() {
                                 name=""
                                 className="px-9 py-3 border-2 broder-black rounded-md"
                                 id=""
+                                value={searchTerm}
                                 placeholder="search"
+                                onKeyDown={handleKeyDown}
+                                onChange={handleSearchTerm}
                             />
                             <IoIosSearch className="absolute left-2 text-xl" />
                         </li>

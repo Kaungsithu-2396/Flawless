@@ -10,14 +10,17 @@ export default function page({
             <div className="w-screen bg-[#353839] text-white p-5">
                 <h1 className="">
                     <Link href={"/"}>Home </Link> /{" "}
+                    <Link href={"/product"}>Products</Link> /
                     {params.productGenre.map((el, index) => {
                         return <span> {decodeURI(String(el))} /</span>;
                     })}
                 </h1>
             </div>
             <div className="md:m-10 flex md:justify-between md:items-center flex-col md:flex-row justify-start m-4  ">
-                <h2 className="font-bold   my-3">Product Categories</h2>
-                <div className="">
+                <h2 className="font-bold  hidden md:block  my-3">
+                    Product Categories
+                </h2>
+                <div className="my-4">
                     <select
                         name=""
                         id=""

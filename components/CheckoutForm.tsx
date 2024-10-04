@@ -4,9 +4,11 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Textarea } from "@/components/ui/textarea";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { checkoutForm } from "../types";
 export default function CheckoutForm() {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -16,8 +18,9 @@ export default function CheckoutForm() {
             additionalMessage: "",
         },
     });
-    const onSubmit: SubmitHandler<checkoutForm> = (data) => console.log(data);
-    console.log(errors);
+    const onSubmit: SubmitHandler<checkoutForm> = (data) => {
+        router.push("/checkout-success/?id=1239");
+    };
     return (
         <>
             <form

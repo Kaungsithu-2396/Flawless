@@ -4,7 +4,11 @@ import Image from "next/image";
 import { product } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { increaseCount, removeFromCart } from "../redux/slices/cartSlice";
+import {
+    decreaseCount,
+    increaseCount,
+    removeFromCart,
+} from "../redux/slices/cartSlice";
 import { Button } from "@/components/ui/button";
 import { RootState } from "../redux/store";
 export default function CartDetail({ cart }: { cart: product }) {
@@ -33,7 +37,10 @@ export default function CartDetail({ cart }: { cart: product }) {
                 </div>
 
                 <div className="flex justify-center gap-2 md:gap-10 items-center">
-                    <button className=" bg-[#d9d9d9] px-3 py-1 md:px-5 md:py-3 rounded-md">
+                    <button
+                        className=" bg-[#d9d9d9] px-3 py-1 md:px-5 md:py-3 rounded-md"
+                        onClick={() => dispatch(decreaseCount({ id: cart.id }))}
+                    >
                         -
                     </button>
                     <p>{cart.count}</p>

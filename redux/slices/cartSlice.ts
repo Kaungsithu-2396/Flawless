@@ -42,7 +42,24 @@ export const cartSlice = createSlice({
                 alert("exceed stock");
             }
         },
+        decreaseCount: (state: any, action) => {
+            const itemToIncrease: product = state.cartItems.find(
+                (el: product) => el.id === action.payload.id
+            );
+            if (itemToIncrease.count > 1) {
+                itemToIncrease.count -= 1;
+            }
+        },
+        clearCart: (state) => {
+            state.cartItems = [];
+        },
     },
 });
-export const { addToCart, removeFromCart, increaseCount } = cartSlice.actions;
+export const {
+    addToCart,
+    removeFromCart,
+    increaseCount,
+    decreaseCount,
+    clearCart,
+} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -3,7 +3,7 @@ import { category, product } from "./types";
 export const data: product[] = [
     {
         id: 1,
-        count: 6,
+        count: 1,
         name: "Diamond Ring",
         productCode: "x28xyfk1",
         mainCategory: "Gold",
@@ -13,7 +13,7 @@ export const data: product[] = [
             "/product-detail-1.jpeg",
         ],
         subCategory: "gold ring",
-        stock: 1,
+        stock: 6,
         description:
             "Here is the brief description tested for developing  on first week of October. Lorem ipsum dolor sit ame  consectetur adipisicing elit. Magni, minus. Lorem ipsum   consectetur adipisicing elit. Magni, minus. Lorem ipsum",
 

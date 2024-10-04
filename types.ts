@@ -25,3 +25,9 @@ export interface checkoutForm {
     additionalMessage: string;
     address: string;
 }
+export interface contactForm {
+    name: string;
+    email: string;
+    phone: number;
+    message: string;
+}
