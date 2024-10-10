@@ -20,7 +20,7 @@ export default function Product({
 
     return (
         <>
-            <Link href={`/detail/${id}?name=${name}`}>
+            <Link href={`/detail/${id}`}>
                 <div className="">
                     {toggleImg ? (
                         <Image

@@ -5,6 +5,9 @@ export default function page({
 }: {
     params: { productGenre: String[] };
 }) {
+    const [item, item2] = params.productGenre;
+    const letter = decodeURI(String(item2));
+    console.log(letter);
     return (
         <>
             <div className="w-screen bg-[#353839] text-white p-5">

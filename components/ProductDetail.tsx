@@ -9,9 +9,6 @@ import { buyNow } from "../redux/slices/buyNowItemSlice";
 import { useRouter } from "next/navigation";
 import { addToCart } from "../redux/slices/cartSlice";
 import { product } from "../types";
-import { RootState } from "../redux/store";
-import { redirect } from "next/navigation";
-import Link from "next/link";
 
 export default function ProductDetail({ product }: { product?: product }) {
     if (!product) {
@@ -20,6 +17,7 @@ export default function ProductDetail({ product }: { product?: product }) {
     const stock = product.stock;
     const router = useRouter();
     const [count, setCount] = useState<number>(1);
+    const [disableBtn, setDisableBtn] = useState<boolean>(false);
     const dispatch = useDispatch();
     const handleIncrease = () => {
         if (count >= stock) {
@@ -47,6 +45,7 @@ export default function ProductDetail({ product }: { product?: product }) {
                     onClick: () => console.log("Undo"),
                 },
             });
+            setDisableBtn(true);
         }
     };
     const buyNowHandler = () => {
@@ -90,11 +89,15 @@ export default function ProductDetail({ product }: { product?: product }) {
                     </span>
                     <span className="  flex  flex-col gap-5 md:flex-row xl:gap-9">
                         <button
-                            className="px-5 py-3 bg-[#228769] hover:font-bold duration-200 delay-200 text-white rounded-md"
+                            className={`px-5 py-3 bg-[#228769] ${
+                                disableBtn && "bg-[#22876950] text-black"
+                            } hover:font-bold duration-200 delay-200 text-white rounded-md`}
                             onClick={handleAddToCart}
+                            disabled={disableBtn}
                         >
                             <span className="flex justify-center items-center gap-3">
-                                <FaCartShopping /> Add to Cart
+                                <FaCartShopping />{" "}
+                                {disableBtn ? "Added" : ` Add to Cart`}
                             </span>
                         </button>
 

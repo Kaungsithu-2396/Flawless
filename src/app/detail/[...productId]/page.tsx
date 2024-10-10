@@ -13,9 +13,6 @@ export default function page({
         productId: number;
     };
 }) {
-    const searchParams = useSearchParams();
-    const productName = searchParams.get("name");
-
     const itemDetail =
         data.find((el) => el.id === Number(params.productId)) || undefined;
     console.log(itemDetail);
@@ -29,7 +26,7 @@ export default function page({
                         {" "}
                         <span className="">Products /</span>
                     </Link>
-                    <span> {productName}</span>
+                    <span> "result fetch api" </span>
                 </h1>
             </div>
             <div className=" xl:w-[80%] m-auto ">

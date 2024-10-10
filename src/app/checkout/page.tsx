@@ -2,9 +2,10 @@ import React from "react";
 import Link from "next/link";
 import OrderDetai from "../../../components/OrderDetai";
 import CheckoutForm from "../../../components/CheckoutForm";
+
 export default function page() {
     return (
-        <div className="min-h-screen overflow-scroll">
+        <div className="  ">
             <div className="  bg-[#353839] text-white p-5">
                 <h1 className="">
                     <Link href={"/"}>Home </Link> /{" "}
@@ -20,7 +21,7 @@ export default function page() {
             </div>
             <div className=" min-h-screen m-4  md:m-12">
                 <h1 className=" text-xl font-bold pb-6 ">Billing Details</h1>
-                <div className="flex flex-col-reverse md:flex-row justify-start items-start md:gap-5">
+                <div className="flex flex-col-reverse md:flex-row justify-start items-start  md:gap-5">
                     <CheckoutForm />
                     <OrderDetai />
                 </div>

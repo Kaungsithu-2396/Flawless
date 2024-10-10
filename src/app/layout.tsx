@@ -24,6 +24,7 @@ export default function RootLayout({
                 <Provider store={store}>
                     <Nav />
                     {children}
+
                     <Footer />
                 </Provider>
             </body>

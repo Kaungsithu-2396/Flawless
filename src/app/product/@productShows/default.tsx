@@ -8,6 +8,7 @@ export default function Default({ params }: any) {
     const itemsPerPage = 12;
     const paginatedDotsCount = Math.ceil(totalItem / itemsPerPage);
     const products: product[] = [...data];
+    console.log(params, "params from product shows");
     return (
         <>
             <div className="">

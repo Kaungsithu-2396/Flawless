@@ -1,20 +1,37 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Textarea } from "@/components/ui/textarea";
+import axios from "axios";
 import { contactForm } from "../types";
 export default function ContactForm() {
+    const [loading, setLoading] = useState<boolean>(false);
     const {
         register,
         formState: { errors },
         handleSubmit,
     } = useForm<contactForm>();
-    const onSubmit: SubmitHandler<contactForm> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<contactForm> = async (data) => {
+        const { name, email, phone, message } = data;
+
+        setLoading(true);
+        try {
+            const uploadResp = await axios.post(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/contact`,
+                { name, email, phone, message }
+            );
+
+            console.log(uploadResp);
+            alert("upload success");
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
-    console.log(errors);
+
     return (
         <>
             <form
@@ -87,7 +104,7 @@ export default function ContactForm() {
                 )}
                 <span className="">
                     <Button type="submit" className="w-full">
-                        Submit
+                        {loading ? "loading.." : "submit"}
                     </Button>
                 </span>
             </form>

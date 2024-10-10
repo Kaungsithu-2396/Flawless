@@ -2,7 +2,7 @@ import React from "react";
 import { FaFacebook, FaInstagram, FaCopyright } from "react-icons/fa";
 export default function Footer() {
     return (
-        <div className="mt-4  ">
+        <div className="mt-4 relative w-full bottom-[-70px]  ">
             <footer className="bg-white px-2 py-4  font-bold ">
                 <div className=" ">
                     <p className="px-1 flex justify-center items-center gap-4">
