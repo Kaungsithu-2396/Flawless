@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
     Accordion,
     AccordionContent,
@@ -11,23 +10,24 @@ import { categories } from "../../../data";
 import { category } from "../../../types";
 export default function Layout({
     children,
-    productShows,
+    productNav,
 }: Readonly<{
     children: React.ReactNode;
-    productShows: React.ReactNode;
+    productNav: React.ReactNode;
 }>) {
     return (
         <section className="">
-            {children}
-
-            <div className="flex xl:justify-start  justify-center items-start gap-10 ">
+            {productNav}
+            <div className="flex xl:justify-start  justify-center items-start gap-10 relative  ">
                 <div className="w-[20%] mx-10 hidden xl:block sticky top-0">
                     {categories.map((el: category, index) => {
                         return (
                             <Accordion type="multiple" key={index}>
                                 <AccordionItem value="item-1">
                                     <AccordionTrigger className="text-sm">
-                                        {el.name}
+                                        <Link href={`/product/${el.name}`}>
+                                            {el.name}
+                                        </Link>
                                     </AccordionTrigger>
                                     {el.subCategories.map(
                                         (item: string, index) => {
@@ -49,8 +49,7 @@ export default function Layout({
                         );
                     })}
                 </div>
-                {productShows}
-                {/* here */}
+                {children}
             </div>
         </section>
     );

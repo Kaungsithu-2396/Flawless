@@ -19,7 +19,7 @@ export default function page() {
                     </Link>
                 </h1>
             </div>
-            <div className=" min-h-screen m-4  md:m-12">
+            <div className=" m-4  md:m-12">
                 <h1 className=" text-xl font-bold pb-6 ">Billing Details</h1>
                 <div className="flex flex-col-reverse md:flex-row justify-start items-start  md:gap-5">
                     <CheckoutForm />

@@ -1,14 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { product } from "../types";
 export default function OrderDetai() {
+    //verify user to reload
+    const handleBeforeUnload: any = (e: any) => {
+        e.preventDefault();
+        e.returnValue = "";
+    };
+    useEffect(() => {
+        window.addEventListener("beforeunload", handleBeforeUnload);
+        return () => {
+            window.removeEventListener("beforeunload", handleBeforeUnload);
+        };
+    }, []);
     const buyNowItems = useSelector(
         (state: RootState) => state.buyNow.buyNowItem
     );
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
     const itemToRender = buyNowItems ? [buyNowItems] : cartItems;
+
     const subtotalPrice = itemToRender.map(
         (el: product) => el.count * el.price
     );
@@ -35,7 +47,7 @@ export default function OrderDetai() {
                                         <span className="">
                                             <p className="font-bold">
                                                 {el.name}{" "}
-                                                <span className="px-4">x</span>{" "}
+                                                <span className="">x</span>{" "}
                                                 {el.count}
                                             </p>
                                             <p className="text-sm text-black/40">

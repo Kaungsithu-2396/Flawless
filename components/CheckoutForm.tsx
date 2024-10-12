@@ -1,14 +1,24 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import axios from "axios";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { checkoutForm } from "../types";
+import { RootState } from "../redux/store";
 export default function CheckoutForm() {
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const buyNowItems = useSelector(
+        (state: RootState) => state.buyNow.buyNowItem
+    );
+    const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+    const orderItem = buyNowItems ? [buyNowItems] : cartItems;
+
     const {
         register,
         handleSubmit,
@@ -18,8 +28,41 @@ export default function CheckoutForm() {
             additionalMessage: "",
         },
     });
-    const onSubmit: SubmitHandler<checkoutForm> = (data) => {
-        router.push("/checkout-success/?id=1239");
+    const onSubmit: SubmitHandler<checkoutForm> = async (data) => {
+        const {
+            name,
+            email,
+            phone,
+            zipCode,
+            additionalMessage,
+            address,
+            installmentPlan,
+            lineId,
+        } = data;
+
+        setLoading(true);
+        try {
+            const submitResp = await axios.post(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`,
+                {
+                    name,
+                    email,
+                    phone,
+                    zipCode,
+                    message: additionalMessage,
+                    address,
+                    installmentPlan,
+                    lineId,
+                    order: orderItem,
+                }
+            );
+            console.log(submitResp.data.data._id, "resp");
+            router.push(`/checkout-success/${submitResp.data.data._id}`);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
     return (
         <>
@@ -230,7 +273,9 @@ export default function CheckoutForm() {
                         </p>
                     )}
                 </span>
-                <Button type="submit">Submit</Button>
+                <Button type="submit">
+                    {loading ? "loading..." : "Submit..."}
+                </Button>
             </form>
         </>
     );

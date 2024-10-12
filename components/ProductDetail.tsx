@@ -9,6 +9,7 @@ import { buyNow } from "../redux/slices/buyNowItemSlice";
 import { useRouter } from "next/navigation";
 import { addToCart } from "../redux/slices/cartSlice";
 import { product } from "../types";
+import { RootState } from "../redux/store";
 
 export default function ProductDetail({ product }: { product?: product }) {
     if (!product) {
@@ -18,6 +19,8 @@ export default function ProductDetail({ product }: { product?: product }) {
     const router = useRouter();
     const [count, setCount] = useState<number>(1);
     const [disableBtn, setDisableBtn] = useState<boolean>(false);
+    const cartItem = useSelector((state: RootState) => state.cart.cartItems);
+    console.log("cart", cartItem);
     const dispatch = useDispatch();
     const handleIncrease = () => {
         if (count >= stock) {
@@ -32,11 +35,22 @@ export default function ProductDetail({ product }: { product?: product }) {
         }
         setCount(count - 1);
     };
+    const verifyDuplicatedItem = (itemToAdd: any) => {
+        const findDuplicatedItem = cartItem.findIndex(
+            (el: any) => el.id === itemToAdd.id
+        );
+        return findDuplicatedItem;
+    };
     const handleAddToCart = () => {
         const itemToAdd = {
             ...product,
             count,
         };
+        const isduplicated = verifyDuplicatedItem(itemToAdd);
+        if (isduplicated > -1) {
+            alert("this item already exisits in cart");
+            return;
+        }
         if (dispatch(addToCart(itemToAdd))) {
             toast("Add to Cart", {
                 description: "Product  has successfully added",
@@ -49,7 +63,11 @@ export default function ProductDetail({ product }: { product?: product }) {
         }
     };
     const buyNowHandler = () => {
-        dispatch(buyNow(product));
+        const itemToBuy = {
+            ...product,
+            count,
+        };
+        dispatch(buyNow(itemToBuy));
         router.push("/checkout");
     };
     return (

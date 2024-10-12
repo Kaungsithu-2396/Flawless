@@ -1,22 +1,18 @@
 import React from "react";
 import Link from "next/link";
+import { data } from "../../../data";
+import { product } from "../../../types";
+import Product from "../../../components/Product";
+import PaginationList from "../../../components/PaginationList";
+import { Key } from "react";
 export default function page() {
+    const products: product[] = [...data];
+    const totalItem = data.length;
+    const itemsPerPage = 12;
+    const paginatedDotsCount = Math.ceil(totalItem / itemsPerPage);
     return (
-        <>
-            <div className="w-screen bg-[#353839] text-white p-5">
-                <h1 className="">
-                    <Link href={"/"}>Home </Link> /{" "}
-                    <Link href={"/product"}>
-                        {" "}
-                        <span className="font-bold">Products</span>
-                    </Link>{" "}
-                </h1>
-            </div>
-            <div className="md:m-10 flex md:justify-between md:items-center flex-col gap-3 md:flex-row justify-start m-4  ">
-                <h2 className="font-bold hidden md:block   my-3">
-                    Product Categories
-                </h2>
-
+        <section>
+            <div className=" mb-5 md:m-0 right-6 md:absolute top-[-5.4rem]">
                 <div className="">
                     <select
                         name=""
@@ -29,6 +25,17 @@ export default function page() {
                     </select>
                 </div>
             </div>
-        </>
+            <div className="">
+                <div className="grid md:grid-cols-3 xl:grid-cols-4 grid-cols-2 gap-5 mx-5">
+                    {products.map((el: product, index: Key) => {
+                        return <Product {...el} key={el.id} />;
+                    })}
+                </div>
+
+                <div className="my-5">
+                    <PaginationList dotCount={paginatedDotsCount} />
+                </div>
+            </div>
+        </section>
     );
 }
