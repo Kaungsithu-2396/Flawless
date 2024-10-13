@@ -2,9 +2,15 @@
 import { useState } from "react";
 import React from "react";
 import Image from "next/image";
-export default function ProductImageZoom({ images }: { images: string[] }) {
+interface Image {
+    url: string;
+    publicID: string;
+}
+export default function ProductImageZoom({ images }: { images: [Image] }) {
+    //@ts-ignore
     const [img1, img2, img3] = images;
-    const [itemUrl, setItemUrl] = useState(img1);
+    console.log(images);
+    const [itemUrl, setItemUrl] = useState<string>(img1.url);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [showZoomImage, setShowZoomImage] = useState(false);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -18,7 +24,6 @@ export default function ProductImageZoom({ images }: { images: string[] }) {
     };
     const handleImageUrl = (e: any) => {
         setItemUrl(e.currentTarget.src);
-        console.log(itemUrl);
     };
 
     return (
@@ -36,7 +41,7 @@ export default function ProductImageZoom({ images }: { images: string[] }) {
                     width={900}
                     height={200}
                     alt="Product detail image"
-                    className="rounded-md md:w-full   img-zoom  "
+                    className="rounded-md  w-full h-auto img-zoom  "
                     onClick={handleImageUrl}
                 />
 
@@ -59,21 +64,29 @@ export default function ProductImageZoom({ images }: { images: string[] }) {
 
             <div className="my-3 flex justify-start gap-4 items-center">
                 <img
-                    src={img1}
+                    src={img1.url}
                     alt=""
-                    className="xl:w-[100px] xl:h-[100px] w-[90px] h-[80px] rounded-md hover:opacity-50 duration-150 delay-150"
+                    width={100}
+                    height={100}
+                    className="  rounded-md hover:opacity-50 duration-150 delay-150"
                     onClick={handleImageUrl}
                 />
                 <img
-                    src={img2}
+                    //@ts-ignore
+                    src={img2?.url}
                     alt=""
-                    className="xl:w-[100px] xl:h-[100px] w-[90px] h-[80px] rounded-md hover:opacity-50 duration-150 delay-150"
+                    width={100}
+                    height={100}
+                    className="  rounded-md hover:opacity-50 duration-150 delay-150"
                     onClick={handleImageUrl}
                 />
                 <img
-                    src={img3}
+                    //@ts-ignore
+                    src={img3?.url}
                     alt=""
-                    className="xl:w-[100px] xl:h-[100px] w-[90px] h-[80px] rounded-md hover:opacity-50 duration-150 delay-150"
+                    width={100}
+                    height={100}
+                    className="  rounded-md hover:opacity-50 duration-150 delay-150"
                     onClick={handleImageUrl}
                 />
                 {/* <Image

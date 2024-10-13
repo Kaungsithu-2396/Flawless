@@ -15,12 +15,12 @@ export default function ProductDetail({ product }: { product?: product }) {
     if (!product) {
         return;
     }
+    console.log(product, "products");
     const stock = product.stock;
     const router = useRouter();
     const [count, setCount] = useState<number>(1);
     const [disableBtn, setDisableBtn] = useState<boolean>(false);
     const cartItem = useSelector((state: RootState) => state.cart.cartItems);
-    console.log("cart", cartItem);
     const dispatch = useDispatch();
     const handleIncrease = () => {
         if (count >= stock) {
@@ -74,7 +74,7 @@ export default function ProductDetail({ product }: { product?: product }) {
         <>
             <div className=" m-12   grid grid-cols-1  lg:grid-cols-2 justify-content-center    gap-10">
                 <div className="">
-                    <ProductImageZoom images={product.productImages} />
+                    <ProductImageZoom images={product.productImageCol} />
                 </div>
                 <div className=" flex flex-col gap-6">
                     <span>

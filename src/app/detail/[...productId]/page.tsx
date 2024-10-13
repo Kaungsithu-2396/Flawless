@@ -1,21 +1,28 @@
-"use client";
 import React from "react";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
-import { useSearchParams } from "next/navigation";
 import ProductDetail from "../../../../components/ProductDetail";
 import RelatedProducts from "../../../../components/RelatedProducts";
-import { data } from "../../../../data";
-export default function page({
-    params,
+import axios from "axios";
+export default async function page({
+    params: { productId },
 }: {
     params: {
-        productId: number;
+        productId: string;
     };
 }) {
-    const itemDetail =
-        data.find((el) => el.id === Number(params.productId)) || undefined;
-    console.log(itemDetail);
+    async function getSpecificItem() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const items = await getSpecificItem();
+
     return (
         <section className="">
             <Toaster />
@@ -30,11 +37,11 @@ export default function page({
                 </h1>
             </div>
             <div className=" xl:w-[80%] m-auto ">
-                <ProductDetail product={itemDetail} />
+                <ProductDetail product={items} />
             </div>
             <div className=" m-12 ">
                 <p className="text-2xl font-bold">You might also like</p>
-                <RelatedProducts />
+                <RelatedProducts productId={productId} />
             </div>
         </section>
     );

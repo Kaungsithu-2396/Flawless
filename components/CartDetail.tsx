@@ -20,7 +20,7 @@ export default function CartDetail({ cart }: { cart: product }) {
                 <div
                     className=" cursor-pointer"
                     onClick={() => {
-                        dispatch(removeFromCart({ id: cart.id }));
+                        dispatch(removeFromCart({ id: cart._id }));
                         router.push("/product");
                     }}
                 >
@@ -28,7 +28,7 @@ export default function CartDetail({ cart }: { cart: product }) {
                 </div>
                 <div>
                     <Image
-                        src={cart.productImages[0]}
+                        src={cart.productImageCol[0].url}
                         width={150}
                         height={100}
                         className="rounded-md md:w-auto w-[100px] "
@@ -39,14 +39,14 @@ export default function CartDetail({ cart }: { cart: product }) {
                 <div className="flex justify-center gap-2 md:gap-10 items-center">
                     <button
                         className=" bg-[#d9d9d9] px-3 py-1 md:px-5 md:py-3 rounded-md"
-                        onClick={() => dispatch(decreaseCount({ id: cart.id }))}
+                        onClick={() => dispatch(decreaseCount({ id: cart._id }))}
                     >
                         -
                     </button>
                     <p>{cart.count}</p>
                     <button
                         className="bg-[#d9d9d9] px-3 py-1 md:px-5 md:py-3 rounded-md"
-                        onClick={() => dispatch(increaseCount({ id: cart.id }))}
+                        onClick={() => dispatch(increaseCount({ id: cart._id }))}
                     >
                         +
                     </button>

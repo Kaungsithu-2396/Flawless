@@ -5,12 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { product } from "../types";
 export default function Product({
-    id,
+    _id,
     name,
     count,
     productCode,
     mainCategory,
-    productImages,
+    productImageCol,
     subCategory,
     stock,
     price,
@@ -20,11 +20,11 @@ export default function Product({
 
     return (
         <>
-            <Link href={`/detail/${id}`}>
+            <Link href={`/detail/${_id}`}>
                 <div className="">
                     {toggleImg ? (
                         <Image
-                            src={productImages[0]}
+                            src={productImageCol[0].url}
                             width={250}
                             height={100}
                             alt="product image "
@@ -34,7 +34,8 @@ export default function Product({
                         />
                     ) : (
                         <Image
-                            src={productImages[1]}
+                            //@ts-ignore
+                            src={productImageCol[1]?.url}
                             width={250}
                             height={100}
                             alt="product image "
@@ -45,7 +46,8 @@ export default function Product({
                     )}
                     <div className="text-center my-5">
                         <p className="">
-                            {name} {productCode}
+                            {name}{" "}
+                            <span className=" font-bold">({productCode})</span>
                         </p>
                         <p className="py-5 font-bold"> ฿ {price}</p>
                     </div>

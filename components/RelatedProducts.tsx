@@ -1,83 +1,46 @@
-"use client";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
-import "swiper/css";
-import "swiper/css/navigation";
-import Link from "next/link";
-import "swiper/css/pagination";
 import { data } from "../data";
-import {
-    Navigation,
-    Pagination,
-    Mousewheel,
-    Keyboard,
-    Autoplay,
-} from "swiper/modules";
 import { product } from "../types";
-export default function RelatedProducts() {
-    const items: product[] = data;
+import ProductSwiper from "./ProductSwiper";
+import axios from "axios";
+export default async function RelatedProducts({
+    productId,
+}: {
+    productId: string;
+}) {
+    async function getProducts() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async function getSpecificProduct() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const allProducts = await getProducts();
+    const specificProduct = await getSpecificProduct();
+    console.log(allProducts, "specific");
+    const relatedProduct = allProducts.filter(
+        (el: any) =>
+            el.category === specificProduct.category &&
+            el._id !== specificProduct._id
+    );
+    console.log(relatedProduct, "related");
+
     return (
-        <div className="my-4 ">
-            <Swiper
-                slidesPerView={2}
-                spaceBetween={10}
-                autoplay={{
-                    delay: 4000,
-                    disableOnInteraction: true,
-                }}
-                loop={true}
-                keyboard={true}
-                breakpoints={{
-                    400: {
-                        slidesPerView: 1,
-                    },
-                    768: {
-                        slidesPerView: 3,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                        spaceBetween: 50,
-                    },
-                }}
-                modules={[
-                    Navigation,
-                    Pagination,
-                    Mousewheel,
-                    Keyboard,
-                    Autoplay,
-                ]}
-            >
-                {items.map((el) => {
-                    return (
-                        <>
-                            <SwiperSlide>
-                                <div className="">
-                                    <Link
-                                        href={`/detail/${el.id}/?name=${el.name}`}
-                                    >
-                                        <Image
-                                            src={"/product-detail-1.jpeg"}
-                                            width={100}
-                                            height={100}
-                                            sizes="100vw"
-                                            className=" rounded-md w-full xl:w-[80%] m-auto py-4  "
-                                            alt="Image for product"
-                                            priority={true}
-                                        />
-                                        <span className="text-center my-4">
-                                            <h1 className="font-bold">
-                                                Diamond Ring
-                                            </h1>
-                                            <p>30000 B</p>
-                                        </span>
-                                    </Link>
-                                </div>
-                            </SwiperSlide>
-                        </>
-                    );
-                })}
-            </Swiper>
-        </div>
+        <>
+            <ProductSwiper items={relatedProduct} />
+        </>
     );
 }

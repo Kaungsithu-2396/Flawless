@@ -1,19 +1,29 @@
 export interface product {
-    id: number;
+    _id: string;
     count: number;
     name: string;
     productCode: string;
     mainCategory: string;
-    productImages: string[];
-    subCategory: string;
+    productImageCol: [
+        {
+            url: string;
+            publicID: string;
+        }
+    ];
+    subCategory: [
+        {
+            _id: string;
+            name: string;
+            mainCategory: string;
+        }
+    ];
     stock: number;
     price: number;
     description: string;
 }
 export interface category {
-    id: number;
+    _id: string;
     name: string;
-    subCategories: string[];
 }
 export interface checkoutForm {
     name: string;

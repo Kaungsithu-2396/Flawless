@@ -12,6 +12,10 @@ module.exports = {
                 protocol: "https",
                 hostname: "flawless-dusky.vercel.app",
             },
+            {
+                protocol: "http",
+                hostname: "res.cloudinary.com",
+            },
         ],
     },
 };

@@ -2,6 +2,7 @@
 import React, { useEffect, Key, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { usePathname } from "next/navigation";
@@ -25,6 +26,8 @@ export default function Nav() {
     const pathName = usePathname();
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const [cartOpen, setCartOpen] = useState<boolean>(false);
+    const [categoriesCol, setCategories] = useState([]);
+    const [subCategoriesCol, setSubCatgories] = useState([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const router = useRouter();
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
@@ -43,6 +46,31 @@ export default function Nav() {
     const totalAmount = totalPriceCollection.reduce((acc, value) => {
         return acc + value;
     }, 0);
+    async function getCategories() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+            );
+            setCategories(resp.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async function getSubCategories() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`
+            );
+            setSubCatgories(resp.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        getCategories();
+        getSubCategories();
+    }, []);
+
     return (
         <>
             <nav className="flex md:flex-col relative gap-5 xl:flex-row justify-around  items-center mb-4 ">
@@ -94,8 +122,14 @@ export default function Nav() {
                                         onChange={handleSearchTerm}
                                     />
                                     <span className="my-6 py-4">
-                                        {categories.map(
-                                            (el: category, index) => {
+                                        {categoriesCol?.map(
+                                            (el: category, index: Key) => {
+                                                const subCategoryForCurrentCategory =
+                                                    subCategoriesCol.filter(
+                                                        (sub: any) =>
+                                                            sub.mainCategory ===
+                                                            el._id
+                                                    );
                                                 return (
                                                     <Accordion
                                                         type="multiple"
@@ -105,19 +139,19 @@ export default function Nav() {
                                                             <AccordionTrigger className="text-sm">
                                                                 {el.name}
                                                             </AccordionTrigger>
-                                                            {el.subCategories.map(
+                                                            {subCategoryForCurrentCategory.map(
                                                                 (
-                                                                    item: string,
+                                                                    item: any,
                                                                     index
                                                                 ) => {
                                                                     return (
                                                                         <>
                                                                             <Link
-                                                                                href={`/product/${el.name}/${item}`}
+                                                                                href={`/product/${el.name}/${item.name}`}
                                                                             >
                                                                                 <AccordionContent className="mx-5">
                                                                                     {
-                                                                                        item
+                                                                                        item.name
                                                                                     }
                                                                                 </AccordionContent>
                                                                             </Link>
