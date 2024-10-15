@@ -37,7 +37,7 @@ export default function ProductDetail({ product }: { product?: product }) {
     };
     const verifyDuplicatedItem = (itemToAdd: any) => {
         const findDuplicatedItem = cartItem.findIndex(
-            (el: any) => el.id === itemToAdd.id
+            (el: any) => el._id === itemToAdd._id
         );
         return findDuplicatedItem;
     };
@@ -46,8 +46,11 @@ export default function ProductDetail({ product }: { product?: product }) {
             ...product,
             count,
         };
+
+        console.log(itemToAdd);
         const isduplicated = verifyDuplicatedItem(itemToAdd);
-        if (isduplicated > -1) {
+        console.log(isduplicated);
+        if (isduplicated != -1) {
             alert("this item already exisits in cart");
             return;
         }
@@ -59,6 +62,7 @@ export default function ProductDetail({ product }: { product?: product }) {
                     onClick: () => console.log("Undo"),
                 },
             });
+            console.log(cartItem, "carts");
             setDisableBtn(true);
         }
     };

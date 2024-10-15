@@ -15,7 +15,6 @@ import { product } from "../types";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { category } from "../types";
-import { categories } from "../data";
 import {
     Accordion,
     AccordionContent,

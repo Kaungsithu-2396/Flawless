@@ -22,7 +22,7 @@ export default function PaginationList({ dotCount }: { dotCount: Number }) {
                                 <>
                                     <PaginationLink
                                         className="text-xl"
-                                        href="#"
+                                        href={`/product?page=${index}`}
                                     >
                                         {index + 1}
                                     </PaginationLink>
@@ -34,7 +34,7 @@ export default function PaginationList({ dotCount }: { dotCount: Number }) {
                         <PaginationEllipsis />
                     </PaginationItem>
                     <PaginationItem>
-                        <PaginationNext href="#" />
+                        <PaginationNext href="/product" />
                     </PaginationItem>
                 </PaginationContent>
             </Pagination>

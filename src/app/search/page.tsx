@@ -1,5 +1,5 @@
 "use client";
-import React, { use } from "react";
+import React from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
@@ -31,7 +31,6 @@ export default function page() {
                     <Suspense fallback={<h1>Loading..</h1>}>
                         <ShowSearchTerm />
                     </Suspense>
-                    {/* <span className="font-bold"> "{name}" </span> */}
                 </h1>
             </div>
             <div className="md:m-10 flex md:justify-between md:items-center flex-col gap-3 md:flex-row justify-start m-4  ">
@@ -41,17 +40,7 @@ export default function page() {
                 <Suspense fallback={<h1>Loading..</h1>}>
                     <AccessSearchItem />
                 </Suspense>
-                <div className="">
-                    <select
-                        name=""
-                        id=""
-                        className="p-3 bg-slate-100 rounded-md text-sm border-black"
-                    >
-                        <option value="">Sort By latest order</option>
-                        <option value="">Sort By Price Low to High</option>
-                        <option value="">Sort By Price High to Low</option>
-                    </select>
-                </div>
+                <div className=""></div>
             </div>
         </Suspense>
     );

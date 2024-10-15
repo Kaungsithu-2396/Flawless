@@ -4,7 +4,6 @@ import { product } from "../../../../types";
 import Product from "../../../../components/Product";
 import PaginationList from "../../../../components/PaginationList";
 import axios from "axios";
-import { data } from "../../../../data";
 import { Key } from "react";
 import ProductShows from "../../../../components/ProductShows";
 export default async function page({

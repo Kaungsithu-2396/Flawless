@@ -10,10 +10,10 @@ export const cartSlice = createSlice({
     reducers: {
         addToCart: (state: any, action) => {
             const itemIdx = state.cartItems.findIndex(
-                (el: product) => el.id === action.payload.id
+                (el: product) => el._id === action.payload.id
             );
             const controlCount = state.cartItems.find(
-                (el: product) => el.id === action.payload.id
+                (el: product) => el._id === action.payload.id
             );
             //@ts-ignore
             if (controlCount?.count >= controlCount?.stock) {
@@ -28,13 +28,13 @@ export const cartSlice = createSlice({
         },
         removeFromCart: (state: any, action) => {
             const itemToDelete = state.cartItems.filter(
-                (el: product) => el.id !== action.payload.id
+                (el: product) => el._id !== action.payload.id
             );
             state.cartItems = itemToDelete;
         },
         increaseCount: (state: any, action) => {
             const itemToIncrease: product = state.cartItems.find(
-                (el: product) => el.id === action.payload.id
+                (el: product) => el._id === action.payload.id
             );
             if (itemToIncrease && itemToIncrease.count < itemToIncrease.stock) {
                 itemToIncrease.count++;
@@ -44,7 +44,7 @@ export const cartSlice = createSlice({
         },
         decreaseCount: (state: any, action) => {
             const itemToIncrease: product = state.cartItems.find(
-                (el: product) => el.id === action.payload.id
+                (el: product) => el._id === action.payload.id
             );
             if (itemToIncrease.count > 1) {
                 itemToIncrease.count -= 1;

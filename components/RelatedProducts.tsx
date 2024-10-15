@@ -1,5 +1,4 @@
 import React from "react";
-import { data } from "../data";
 import { product } from "../types";
 import ProductSwiper from "./ProductSwiper";
 import axios from "axios";

@@ -11,8 +11,14 @@ import {
     Keyboard,
     Autoplay,
 } from "swiper/modules";
-
-export default function Carousel() {
+type image = {
+    _id: string;
+    image: {
+        url: string;
+        publicID: string;
+    };
+};
+export default function Carousel({ images }: { images: [image] }) {
     return (
         <>
             <Swiper
@@ -32,71 +38,25 @@ export default function Carousel() {
                     Autoplay,
                 ]}
             >
-                <SwiperSlide>
-                    <div className="">
-                        <Image
-                            src={"/slide-3.jpg"}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="object-cover h-full w-full"
-                            alt="Image for product"
-                            priority={true}
-                        />
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="">
-                        <Image
-                            src={"/slide-3.jpg"}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="object-cover h-full w-full"
-                            alt="Image for product"
-                            priority={true}
-                        />
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="">
-                        <Image
-                            src={"/slide-3.jpg"}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="object-cover h-full w-full"
-                            alt="Image for product"
-                            priority={true}
-                        />
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="">
-                        <Image
-                            src={"/slide-3.jpg"}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="object-cover h-full w-full"
-                            alt="Image for product"
-                            priority={true}
-                        />
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="">
-                        <Image
-                            src={"/slide-3.jpg"}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="object-cover h-full w-full"
-                            alt="Image for product"
-                            priority={true}
-                        />
-                    </div>
-                </SwiperSlide>
+                {images.map((el: image) => {
+                    return (
+                        <>
+                            <SwiperSlide>
+                                <div className="">
+                                    <Image
+                                        src={el.image.url}
+                                        width={0}
+                                        height={0}
+                                        sizes="100vw"
+                                        className="object-cover h-full w-full"
+                                        alt="Image for product"
+                                        priority={true}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        </>
+                    );
+                })}
             </Swiper>
         </>
     );

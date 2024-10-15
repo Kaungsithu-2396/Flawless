@@ -41,7 +41,7 @@ export default function OrderDetai() {
 
                     {itemToRender.map((el: product) => {
                         return (
-                            <div className="" key={el.id}>
+                            <div className="" key={el._id}>
                                 <div className=" my-3">
                                     <div className="  md:px-12 md:py-2 flex justify-around">
                                         <span className="">

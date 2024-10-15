@@ -56,7 +56,7 @@ export default function CheckoutForm() {
                     order: orderItem,
                 }
             );
-            console.log(submitResp, "resp");
+
             router.push(`/checkout-success/${submitResp.data.data._id}`);
         } catch (error) {
             console.log(error);

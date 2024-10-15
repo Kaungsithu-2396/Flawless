@@ -4,10 +4,54 @@ import Image from "next/image";
 import { Key } from "react";
 import { Button } from "@/components/ui/button";
 import Payment from "../../components/pages/Home/Payment";
-export default function Home() {
+import axios from "axios";
+import { product } from "../../types";
+type categories = {
+    _id: string;
+    name: string;
+    categoryImage: {
+        url: string;
+    };
+};
+
+export default async function Home() {
+    async function getHomeImages() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async function getCategories() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async function getFeaturedProducts() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const homePageImgs = await getHomeImages();
+    const categories = await getCategories();
+    const productCol = await getFeaturedProducts();
+    const products = productCol.slice(0, 5);
     return (
         <>
-            <Carousel />
+            <Carousel images={homePageImgs} />
             <section className="my-5 ">
                 <span className="">
                     <h1 className="text-xl font-bold text-center">
@@ -39,6 +83,31 @@ export default function Home() {
                             </div>
                         );
                     })}
+                    {/* {categories.map((el: categories, index: Key) => {
+                        return (
+                            <div className="">
+                                <div
+                                    className=" w-full xl:gap-0 flex flex-col justify-center items-center gap-3 rounded-md bg-[#f5f4f4] px-5 md:px-0 py-4 md:py-3 mx-0 md:mx-5"
+                                    key={index}
+                                >
+                                    <Image
+                                        src={el.categoryImage.url}
+                                        width={100}
+                                        height={100}
+                                        alt="Category image"
+                                        className=" w-[50%] m-auto hover:scale-110 duration-200 delay-200 cursor-pointer xl:w-[40%] "
+                                    />
+                                    <p className="font-semibold ">{el.name}</p>
+                                    <p className="  text-center text-sm   text-orange-500 hover:font-bold transition-all duration-200 delay-150">
+                                        {" "}
+                                        <Link href={`/product/${el.name}`}>
+                                            Explore More
+                                        </Link>{" "}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })} */}
                 </section>
             </section>
             <section className=" my-8 relative">
@@ -92,6 +161,32 @@ export default function Home() {
                                 </div>
                             );
                         })}
+                        {/* {products.map((el: product) => {
+                            return (
+                                <Link href={`detail/${el._id}`}>
+                                    <div className=" flex flex-col justify-center items-center">
+                                        <div className=" w-full">
+                                            <Image
+                                                src={el.productImageCol[0].url}
+                                                width={100}
+                                                height={100}
+                                                className="  md:w-[50%] m-auto   px- py-3  object-cover text-center "
+                                                alt="Product image"
+                                            />
+                                        </div>
+                                        <p className="font-bold py-3 text-slate-500  text-sm  text-center">
+                                            {el.name}
+                                        </p>
+
+                                        <div className="">
+                                            <p className="font-bold   md:text-xl text-center">
+                                                ฿ {el.price}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </Link>
+                            );
+                        })} */}
                     </div>
                     <div className="flex justify-center items-center pt-3">
                         <Link href={"/product"}>
