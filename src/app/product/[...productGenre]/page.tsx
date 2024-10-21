@@ -13,7 +13,6 @@ export default async function page({
 }) {
     console.log(productGenre);
     const [item, item2] = productGenre;
-    const letter = decodeURI(String(item2));
     let apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/genre?category=${item}`;
     if (item2) {
         apiUrl += `&subCategory=${item2}`;
@@ -26,7 +25,7 @@ export default async function page({
             console.log(error);
         }
     }
-    const products = await getProductAsProductGenre();
+    const products = (await getProductAsProductGenre()) || [];
     const totalItem = products.length;
     const itemsPerPage = 12;
     const paginatedDotsCount = Math.ceil(totalItem / itemsPerPage);

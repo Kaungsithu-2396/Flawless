@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import axios from "axios";
@@ -10,14 +10,24 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { checkoutForm } from "../types";
 import { RootState } from "../redux/store";
+import { resetItems } from "../redux/slices/buyNowItemSlice";
 export default function CheckoutForm() {
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const buyNowItems = useSelector(
         (state: RootState) => state.buyNow.buyNowItem
     );
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-    const orderItem = buyNowItems ? [buyNowItems] : cartItems;
+    const dynamicCheckout = useSelector(
+        (state: RootState) => state.dynamicCheckout.checkoutCart
+    );
+    console.log(dynamicCheckout, "is cart checkout");
+    const orderItem = dynamicCheckout
+        ? cartItems
+        : buyNowItems
+        ? [buyNowItems]
+        : cartItems;
 
     const {
         register,

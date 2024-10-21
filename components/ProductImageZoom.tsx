@@ -9,7 +9,6 @@ interface Image {
 export default function ProductImageZoom({ images }: { images: [Image] }) {
     //@ts-ignore
     const [img1, img2, img3] = images;
-    console.log(images);
     const [itemUrl, setItemUrl] = useState<string>(img1.url);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [showZoomImage, setShowZoomImage] = useState(false);
@@ -36,7 +35,7 @@ export default function ProductImageZoom({ images }: { images: [Image] }) {
                 }}
                 onMouseMove={handleMouseMove}
             >
-                <Image
+                <img
                     src={itemUrl}
                     width={900}
                     height={200}

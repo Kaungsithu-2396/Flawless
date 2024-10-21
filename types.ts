@@ -10,13 +10,7 @@ export interface product {
             publicID: string;
         }
     ];
-    subCategory: [
-        {
-            _id: string;
-            name: string;
-            mainCategory: string;
-        }
-    ];
+    subCategory: string;
     stock: number;
     price: number;
     description: string;

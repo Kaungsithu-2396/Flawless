@@ -45,10 +45,11 @@ export default async function Home() {
             console.log(error);
         }
     }
-    const homePageImgs = await getHomeImages();
-    const categories = await getCategories();
-    const productCol = await getFeaturedProducts();
-    const products = productCol.slice(0, 5);
+    const homePageImgs = (await getHomeImages()) || [];
+    console.log(homePageImgs);
+    const categories = (await getCategories()) || [];
+    const productCol = (await getFeaturedProducts()) || [];
+
     return (
         <>
             <Carousel images={homePageImgs} />
@@ -161,7 +162,7 @@ export default async function Home() {
                                 </div>
                             );
                         })}
-                        {/* {products.map((el: product) => {
+                        {/* {productCol.map((el: product) => {
                             return (
                                 <Link href={`detail/${el._id}`}>
                                     <div className=" flex flex-col justify-center items-center">

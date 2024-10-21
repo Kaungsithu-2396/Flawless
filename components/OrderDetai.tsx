@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/store";
 import { product } from "../types";
 export default function OrderDetai() {
@@ -15,11 +15,19 @@ export default function OrderDetai() {
             window.removeEventListener("beforeunload", handleBeforeUnload);
         };
     }, []);
+    const dispatch = useDispatch();
     const buyNowItems = useSelector(
         (state: RootState) => state.buyNow.buyNowItem
     );
+    const dynamicCheckout = useSelector(
+        (state: RootState) => state.dynamicCheckout.checkoutCart
+    );
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-    const itemToRender = buyNowItems ? [buyNowItems] : cartItems;
+    const itemToRender = dynamicCheckout
+        ? cartItems
+        : buyNowItems
+        ? [buyNowItems]
+        : cartItems;
 
     const subtotalPrice = itemToRender.map(
         (el: product) => el.count * el.price

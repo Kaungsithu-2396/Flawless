@@ -38,7 +38,7 @@ export default function Carousel({ images }: { images: [image] }) {
                     Autoplay,
                 ]}
             >
-                {images.map((el: image) => {
+                {images?.map((el: image) => {
                     return (
                         <>
                             <SwiperSlide>

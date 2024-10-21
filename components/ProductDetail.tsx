@@ -47,9 +47,7 @@ export default function ProductDetail({ product }: { product?: product }) {
             count,
         };
 
-        console.log(itemToAdd);
         const isduplicated = verifyDuplicatedItem(itemToAdd);
-        console.log(isduplicated);
         if (isduplicated != -1) {
             alert("this item already exisits in cart");
             return;
@@ -62,7 +60,6 @@ export default function ProductDetail({ product }: { product?: product }) {
                     onClick: () => console.log("Undo"),
                 },
             });
-            console.log(cartItem, "carts");
             setDisableBtn(true);
         }
     };

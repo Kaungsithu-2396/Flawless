@@ -6,13 +6,14 @@ import axios from "axios";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { usePathname } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import ShoppingCart from "./ShoppingCart";
 import { RxCross1 } from "react-icons/rx";
 import CartDetail from "./CartDetail";
 import { product } from "../types";
 import { useRouter } from "next/navigation";
+import { UseDispatch } from "react-redux";
 import { Button } from "@/components/ui/button";
 import { category } from "../types";
 import {
@@ -21,6 +22,10 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+    checkoutCartItems,
+    resetCheckoutItem,
+} from "../redux/slices/dynamicCheckout";
 export default function Nav() {
     const pathName = usePathname();
     const [openMenu, setOpenMenu] = useState<boolean>(false);
@@ -30,6 +35,19 @@ export default function Nav() {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const router = useRouter();
     const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+
+    const dynamicCheckout = useSelector(
+        (state: RootState) => state.dynamicCheckout.checkoutCart
+    );
+    const dispatch = useDispatch();
+    const checkoutHandler = () => {
+        setCartOpen(false);
+        dispatch(checkoutCartItems());
+    };
+    // useEffect(() => {
+    //     dispatch(resetCheckoutItem());
+    //     console.log("working");
+    // }, []);
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             router.push(`/search/?name=${searchTerm}`);
@@ -276,7 +294,7 @@ export default function Nav() {
                             <Link href={"/checkout"}>
                                 <Button
                                     className="w-full "
-                                    onClick={() => setCartOpen(false)}
+                                    onClick={checkoutHandler}
                                 >
                                     Check out
                                 </Button>

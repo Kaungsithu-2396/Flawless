@@ -35,8 +35,8 @@ export default async function Layout({
             console.log(error);
         }
     }
-    const categoryCol = await getCategories();
-    const subCategoryCol = await getSubCategories();
+    const categoryCol = (await getCategories()) || [];
+    const subCategoryCol = (await getSubCategories()) || [];
 
     return (
         <section className="">
