@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import ProductShows from "../components/ProductShows";
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
+import LoadingUi from "./LoadingUi";
 export default function Products() {
     const searchParams = useSearchParams();
     const pageNo = searchParams.get("page") || 0;
@@ -37,7 +38,16 @@ export default function Products() {
     const paginatedDotsCount = Math.ceil(totalItem / itemsPerPage);
     return (
         <>
-            {products.length > 0 ? (
+            {loading ? (
+                <LoadingUi />
+            ) : (
+                <ProductShows
+                    products={products}
+                    paginatedDotsCount={paginatedDotsCount}
+                />
+            )}
+
+            {/* {products.length > 0 ? (
                 <ProductShows
                     products={products}
                     paginatedDotsCount={paginatedDotsCount}
@@ -52,7 +62,7 @@ export default function Products() {
                         Back to product
                     </Link>
                 </span>
-            )}
+            )} */}
         </>
     );
 }

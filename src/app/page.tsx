@@ -49,6 +49,7 @@ export default async function Home() {
     console.log(homePageImgs);
     const categories = (await getCategories()) || [];
     const productCol = (await getFeaturedProducts()) || [];
+    const featuredItems = productCol.slice(0, 6);
 
     return (
         <>
@@ -112,20 +113,25 @@ export default async function Home() {
                 </section>
             </section>
             <section className=" my-8 relative">
-                <Image
-                    src={"/product-img.jpg"}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className="object-cover h-full w-full md:w-[70%]"
+                <img
+                    src={"/banner_4.jpeg"}
+                    width={100}
+                    height={100}
+                    className="object-cover h-[50%]  w-full "
                     alt="Image for product"
-                    priority={true}
                 />
-                <div className="absolute w-full h-full bg-black/50 top-0"></div>
-                <div className="absolute top-4 md:top-[40%] left-5 md:left-36 text-white">
-                    <h1 className="text-white font-bold text-xl text-center my-2  md:text-2xl">
-                        Space for video..
-                    </h1>
+                <div className="absolute w-full h-full bg-black/30 top-0"></div>
+                <div className="absolute top-4 md:top-[20%] left-5 md:left-34 text-white">
+                    <span className="text-white font-bold text-xs text-center my-2  md:text-2xl">
+                        <p>Be Proud to wear</p>
+                        Authentic Items
+                    </span>
+                    <br />
+                    <Link href={"/product"}>
+                        <button className="bg-white my-3 md:my-6 md:px-5 md:py-2 md:text-xl text-xs px-3 py-1 rounded-md hover:font-bold duration-300 delay-300 text-black">
+                            Explore More
+                        </button>
+                    </Link>
                 </div>
             </section>
 
@@ -134,8 +140,8 @@ export default async function Home() {
                     Featured Products
                 </h1>
                 <div>
-                    <div className=" w-2/3 m-auto my-6 grid grid-cols-2 gap-4 md:gap-4 md:grid-cols-3 xl:grid-cols-3 ">
-                        {[...Array(6)].map((_, index: Key) => {
+                    <div className="  m-6 grid grid-cols-2 gap-2  md:grid-cols-3 xl:grid-cols-3 ">
+                        {/* {[...Array(6)].map((_, index: Key) => {
                             return (
                                 <div
                                     className=" flex flex-col justify-center items-center"
@@ -161,22 +167,22 @@ export default async function Home() {
                                     </div>
                                 </div>
                             );
-                        })}
-                        {/* {productCol.map((el: product) => {
+                        })} */}
+                        {featuredItems.map((el: product) => {
                             return (
                                 <Link href={`detail/${el._id}`}>
-                                    <div className=" flex flex-col justify-center items-center">
+                                    <div className=" flex flex-col justify-center items-center w-full ">
                                         <div className=" w-full">
-                                            <Image
+                                            <img
                                                 src={el.productImageCol[0].url}
                                                 width={100}
                                                 height={100}
-                                                className="  md:w-[50%] m-auto   px- py-3  object-cover text-center "
+                                                className=" w-[90%] h-[90%] m-auto  px- py-3  object-cover text-center rounded-2xl "
                                                 alt="Product image"
                                             />
                                         </div>
                                         <p className="font-bold py-3 text-slate-500  text-sm  text-center">
-                                            {el.name}
+                                            {el.name} ({el.productCode})
                                         </p>
 
                                         <div className="">
@@ -187,7 +193,7 @@ export default async function Home() {
                                     </div>
                                 </Link>
                             );
-                        })} */}
+                        })}
                     </div>
                     <div className="flex justify-center items-center pt-3">
                         <Link href={"/product"}>

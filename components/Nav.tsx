@@ -154,8 +154,13 @@ export default function Nav() {
                                                     >
                                                         <AccordionItem value="item-1">
                                                             <AccordionTrigger className="text-sm">
-                                                                {el.name}
+                                                                <Link
+                                                                    href={`/product/${el.name}`}
+                                                                >
+                                                                    {el.name}
+                                                                </Link>
                                                             </AccordionTrigger>
+
                                                             {subCategoryForCurrentCategory.map(
                                                                 (
                                                                     item: any,
