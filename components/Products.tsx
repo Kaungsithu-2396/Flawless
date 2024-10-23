@@ -13,15 +13,16 @@ export default function Products() {
     const [refresh, setRefresh] = useState(false);
     const [products, setProducts] = useState<product[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [total, setTotal] = useState([]);
     useEffect(() => {
         getProducts();
-        console.log(refresh);
+        getTotalItems();
     }, [pageNo]);
     async function getProducts() {
         setLoading(true);
         try {
             const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product?page=${pageNo}`
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/allProduct?page=${pageNo}`
             );
 
             setProducts(resp.data.data);
@@ -32,8 +33,18 @@ export default function Products() {
             setLoading(false);
         }
     }
+    async function getTotalItems() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+            );
+            setTotal(resp.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-    const totalItem = products.length;
+    const totalItem = total.length || 0;
     const itemsPerPage = 12;
     const paginatedDotsCount = Math.ceil(totalItem / itemsPerPage);
     return (

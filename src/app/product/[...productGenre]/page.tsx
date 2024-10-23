@@ -11,7 +11,6 @@ export default async function page({
 }: {
     params: { productGenre: String[] };
 }) {
-    console.log(productGenre);
     const [item, item2] = productGenre;
     let apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/genre?category=${item}`;
     if (item2) {

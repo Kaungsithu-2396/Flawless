@@ -22,7 +22,6 @@ export default async function page({
         }
     }
     const items = await getSpecificItem();
-
     return (
         <section className="">
             <Toaster />
@@ -33,7 +32,7 @@ export default async function page({
                         {" "}
                         <span className="">Products /</span>
                     </Link>
-                    <span> "result fetch api" </span>
+                    <span> {items.name} </span>
                 </h1>
             </div>
             <div className=" xl:w-[80%] m-auto ">

@@ -29,13 +29,11 @@ export default async function RelatedProducts({
     }
     const allProducts = await getProducts();
     const specificProduct = await getSpecificProduct();
-    console.log(allProducts, "specific");
     const relatedProduct = allProducts.filter(
         (el: any) =>
             el.category === specificProduct.category &&
             el._id !== specificProduct._id
     );
-    console.log(relatedProduct, "related");
 
     return (
         <>
