@@ -4,6 +4,7 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import axios from "axios";
 import {
     Navigation,
     Pagination,
@@ -11,6 +12,7 @@ import {
     Keyboard,
     Autoplay,
 } from "swiper/modules";
+import { useEffect, useState } from "react";
 type image = {
     _id: string;
     image: {
@@ -18,7 +20,23 @@ type image = {
         publicID: string;
     };
 };
-export default function Carousel({ images }: { images: [image] }) {
+
+export default function Carousel() {
+    const [images, setImages] = useState([]);
+    async function getHomeImages() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
+            );
+            setImages(resp.data.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getHomeImages();
+    });
     return (
         <>
             <Swiper

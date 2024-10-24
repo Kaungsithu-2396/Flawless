@@ -15,16 +15,6 @@ type categories = {
 };
 
 export default async function Home() {
-    async function getHomeImages() {
-        try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
-            );
-            return resp.data.data;
-        } catch (error) {
-            console.log(error);
-        }
-    }
     async function getCategories() {
         try {
             const resp = await axios.get(
@@ -45,15 +35,14 @@ export default async function Home() {
             console.log(error);
         }
     }
-    const homePageImgs = (await getHomeImages()) || [];
-    console.log(homePageImgs);
+
     const categories = (await getCategories()) || [];
     const productCol = (await getFeaturedProducts()) || [];
     const featuredItems = productCol.slice(0, 6);
 
     return (
         <>
-            <Carousel images={homePageImgs} />
+            <Carousel />
             <section className="my-5 ">
                 <span className="">
                     <h1 className="text-xl font-bold text-center">
