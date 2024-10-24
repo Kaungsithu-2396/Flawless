@@ -103,7 +103,7 @@ export default function Nav() {
                         <Image
                             width={300}
                             height={108}
-                            className=" w-[50%] m-auto text-center lg:text-center "
+                            className=" w-[70%] m-auto text-center lg:text-center "
                             src={"/flawlesslogo.png"}
                             alt="Logo for flawless"
                             priority={true}
