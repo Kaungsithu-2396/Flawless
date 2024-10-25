@@ -136,14 +136,16 @@ export default async function Home() {
             </section>
             <section className=" my-8 relative">
                 <img
-                    src={"/banner_4.jpeg"}
+                    src={
+                        "https://res.cloudinary.com/doljsriiv/image/upload/v1729837964/svvfcg6ibrgqg71iae2f.jpg"
+                    }
                     width={100}
                     height={100}
                     className="object-cover h-[50%]  w-full "
                     alt="Image for product"
                 />
                 <div className="absolute w-full h-full bg-black/30 top-0"></div>
-                <div className="absolute top-4 md:top-[20%] left-5 md:left-34 text-white">
+                <div className="absolute top-20 md:top-[20%] left-5 md:left-[70px] text-white">
                     <span className="text-white font-bold text-xs text-center my-2  md:text-2xl">
                         <p>Be Proud to wear</p>
                         Authentic Items

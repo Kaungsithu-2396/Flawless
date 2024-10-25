@@ -104,7 +104,9 @@ export default function Nav() {
                             width={300}
                             height={108}
                             className=" w-[70%] m-auto text-center lg:text-center "
-                            src={"/flawlesslogo.png"}
+                            src={
+                                "https://res.cloudinary.com/doljsriiv/image/upload/v1729860065/flawlesslogo_miiout.png"
+                            }
                             alt="Logo for flawless"
                             priority={true}
                         />
