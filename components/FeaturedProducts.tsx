@@ -22,13 +22,12 @@ export default function FeaturedProducts() {
     const [loading, setLoading] = useState<boolean>(false);
     useEffect(() => {
         getFeaturedProducts();
-    });
+    }, []);
     return (
         <>
-            {loading && <LoadingUi />}
             {data &&
                 data.slice(0, 6).map((el: any) => {
-                    <Link href={`detail/${el._id}`}>
+                    <Link href={`detail/${el._id}`} key={el._id}>
                         <div className=" flex flex-col justify-center items-center w-full ">
                             <div className=" w-full">
                                 <img

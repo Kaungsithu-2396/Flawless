@@ -36,7 +36,7 @@ export default function Carousel() {
 
     useEffect(() => {
         getHomeImages();
-    });
+    }, []);
     return (
         <>
             <Swiper
