@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Payment from "../../components/pages/Home/Payment";
 import axios from "axios";
 import { product } from "../../types";
+import FeaturedProducts from "../../components/FeaturedProducts";
 type categories = {
     _id: string;
     name: string;
@@ -25,20 +26,8 @@ export default async function Home() {
             console.log(error);
         }
     }
-    async function getFeaturedProducts() {
-        try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
-            );
-            return resp.data.data;
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     const categories = (await getCategories()) || [];
-    const productCol = (await getFeaturedProducts()) || [];
-    const featuredItems = productCol.slice(0, 6);
 
     return (
         <>
@@ -157,32 +146,7 @@ export default async function Home() {
                                 </div>
                             );
                         })} */}
-                        {featuredItems.map((el: product) => {
-                            return (
-                                <Link href={`detail/${el._id}`}>
-                                    <div className=" flex flex-col justify-center items-center w-full ">
-                                        <div className=" w-full">
-                                            <img
-                                                src={el.productImageCol[0].url}
-                                                width={100}
-                                                height={100}
-                                                className=" w-[90%] h-[90%] m-auto  px- py-3  object-cover text-center rounded-2xl "
-                                                alt="Product image"
-                                            />
-                                        </div>
-                                        <p className="font-bold py-3 text-slate-500  text-sm  text-center">
-                                            {el.name} ({el.productCode})
-                                        </p>
-
-                                        <div className="">
-                                            <p className="font-bold   md:text-xl text-center">
-                                                ฿ {el.price}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </Link>
-                            );
-                        })}
+                        <FeaturedProducts />
                     </div>
                     <div className="flex justify-center items-center pt-3">
                         <Link href={"/product"}>
