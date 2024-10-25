@@ -13,10 +13,14 @@ export default async function page({
 }) {
     async function getSpecificItem() {
         try {
-            const resp = await axios.get(
+            const resp = await fetch(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
             );
-            return resp.data.data;
+            if (!resp.ok) {
+                throw new Error("fetching error");
+            }
+            const data = await resp.json();
+            return data.data;
         } catch (error) {
             console.log(error);
         }
