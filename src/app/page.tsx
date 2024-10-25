@@ -1,11 +1,10 @@
-"use client";
 import Link from "next/link";
 import Carousel from "../../components/pages/Home/Carousel";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { Key } from "react";
 import { product } from "../../types";
-import FeaturedProducts from "../../components/FeaturedProducts";
 import { useEffect, useState } from "react";
 type categories = {
     _id: string;
@@ -15,27 +14,51 @@ type categories = {
     };
 };
 
-export default function Home() {
-    const [data, setData] = useState<any>([]);
-    async function getFeaturedProducts() {
+export default async function Home() {
+    // const [category, setCategory] = useState([]);
+    // const [data, setData] = useState<any>([]);
+    // const [loadingCategory, setLoadingCategory] = useState(false);
+    async function getCategory() {
         try {
             const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
             );
-            setData(resp.data.data);
+            return resp.data.data;
         } catch (error) {
             console.log(error);
         }
     }
-    useEffect(() => {
-        getFeaturedProducts();
-    });
+    async function getHomeImages() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async function getFeaturedProducts() {
+        try {
+            const resp = await axios.get(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/featured/products`
+            );
+            return resp.data.data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    // useEffect(() => {
+    //     getFeaturedProducts();
+    //     getCategory();
+    // }, []);
 
-    const featuredItems = data && data.slice(0, 6);
-
+    const featuredItems = (await getFeaturedProducts()) || [];
+    const category = (await getCategory()) || [];
+    const homePageImages = (await getHomeImages()) || [];
     return (
         <>
-            <Carousel />
+            <Carousel images={homePageImages} />
             <section className="my-5 ">
                 <span className="">
                     <h1 className="text-xl font-bold text-center">
@@ -44,7 +67,7 @@ export default function Home() {
                     </h1>
                 </span>
                 <section className="  md:w-auto py-5 mx-2 grid grid-cols-3 md:grid-cols-4  justify-center items-center gap-2 md:gap-4 md:mx-8">
-                    {[...Array(4)].map((_, index) => {
+                    {/* {[...Array(4)].map((_, index) => {
                         return (
                             <div
                                 className=" w-full xl:gap-0 flex flex-col justify-center items-center gap-3 rounded-md bg-[#f5f4f4] px-5 md:px-0 py-4 md:py-3 mx-0 md:mx-5"
@@ -66,8 +89,9 @@ export default function Home() {
                                 </p>
                             </div>
                         );
-                    })}
-                    {/* {categories.map((el: categories, index: Key) => {
+                    })} */}
+
+                    {category.map((el: categories, index: Key) => {
                         return (
                             <div className="">
                                 <div
@@ -91,7 +115,7 @@ export default function Home() {
                                 </div>
                             </div>
                         );
-                    })} */}
+                    })}
                 </section>
             </section>
             <section className=" my-8 relative">

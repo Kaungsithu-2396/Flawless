@@ -13,6 +13,8 @@ import {
     Autoplay,
 } from "swiper/modules";
 import { useEffect, useState } from "react";
+import LoadingUi from "../../LoadingUi";
+import LoadingHome from "../../LoadingHome";
 type image = {
     _id: string;
     image: {
@@ -21,22 +23,25 @@ type image = {
     };
 };
 
-export default function Carousel() {
-    const [images, setImages] = useState([]);
-    async function getHomeImages() {
-        try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
-            );
-            setImages(resp.data.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+export default function Carousel({ images }: { images: [image] }) {
+    // async function getHomeImages() {
+    //     setLoading(true);
+    //     try {
+    //         const resp = await axios.get(
+    //             `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
+    //         );
+    //         setImages(resp.data.data);
+    //     } catch (error) {
+    //         console.log(error);
+    //         setLoading(false);
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // }
 
-    useEffect(() => {
-        getHomeImages();
-    }, []);
+    // useEffect(() => {
+    //     getHomeImages();
+    // }, []);
     return (
         <>
             <Swiper
@@ -56,10 +61,10 @@ export default function Carousel() {
                     Autoplay,
                 ]}
             >
-                {images?.map((el: image) => {
+                {images?.map((el: image, idx) => {
                     return (
                         <>
-                            <SwiperSlide>
+                            <SwiperSlide key={idx}>
                                 <div className="">
                                     <Image
                                         src={el.image.url}
