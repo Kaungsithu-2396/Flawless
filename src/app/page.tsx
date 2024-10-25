@@ -20,30 +20,46 @@ export default async function Home() {
     // const [loadingCategory, setLoadingCategory] = useState(false);
     async function getCategory() {
         try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+            const resp = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`,
+                { cache: "no-store" }
             );
-            return resp.data.data;
+            // if (!resp.ok) throw new Error("category fetch fail");
+            const data = await resp.json();
+            //@ts-ignore
+            return data?.data;
         } catch (error) {
             console.log(error);
         }
     }
     async function getHomeImages() {
         try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
+            const resp = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`,
+                { cache: "no-store" }
             );
-            return resp.data.data;
+            if (!resp.ok) {
+                throw new Error("home image fetch fail");
+            }
+            const data = await resp.json();
+            //@ts-ignore
+            return data.data;
         } catch (error) {
             console.log(error);
         }
     }
     async function getFeaturedProducts() {
         try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/featured/products`
+            const resp = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/featured/products`,
+                { cache: "no-store" }
             );
-            return resp.data.data;
+            if (!resp.ok) {
+                throw new Error("featured product fetch fail");
+            }
+            const data = await resp.json();
+            //@ts-ignore
+            return data.data;
         } catch (error) {
             console.log(error);
         }
