@@ -20,7 +20,7 @@ export default function Product({
 
     return (
         <>
-            <Link href={`/detail/${_id}`}>
+            <Link href={`/detail/${_id}`} prefetch={false}>
                 <div className="">
                     {toggleImg ? (
                         <Image

@@ -7,7 +7,6 @@ export default function Default() {
     const urlArray = pathName.split("/");
     urlArray.splice(0, 1, "Home");
     const routeCol = urlArray.map((el) => decodeURI(el));
-    console.log(routeCol.slice(2));
     return (
         <>
             <div className="w-screen bg-[#353839] text-white text-sm md:text-base p-5">

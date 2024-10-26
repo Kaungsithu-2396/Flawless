@@ -3,7 +3,19 @@ import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
 import ProductDetail from "../../../../components/ProductDetail";
 import RelatedProducts from "../../../../components/RelatedProducts";
-import axios from "axios";
+export async function generateStaticParams() {
+    const product = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+    );
+    const res = await product.json();
+
+    return res.data.map((el: any) => {
+        return {
+            productId: el._id,
+        };
+    });
+}
+export const revalidate = 20;
 export default async function page({
     params: { productId },
 }: {
@@ -11,21 +23,12 @@ export default async function page({
         productId: string;
     };
 }) {
-    async function getSpecificItem() {
-        try {
-            const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
-            );
-            if (!resp.ok) {
-                throw new Error("fetching error");
-            }
-            const data = await resp.json();
-            return data.data;
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    const items = await getSpecificItem();
+    const resp = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
+    );
+    const data = await resp.json();
+
+    const items = data.data;
     return (
         <section className="">
             <Toaster />

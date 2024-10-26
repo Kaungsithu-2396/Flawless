@@ -1,7 +1,5 @@
 import React from "react";
-import { product } from "../types";
 import ProductSwiper from "./ProductSwiper";
-import axios from "axios";
 export default async function RelatedProducts({
     productId,
 }: {
@@ -9,20 +7,26 @@ export default async function RelatedProducts({
 }) {
     async function getProducts() {
         try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+            const resp = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
+                { next: { revalidate: 20 } }
             );
-            return resp.data.data;
+            const data = await resp.json();
+            return data.data;
         } catch (error) {
             console.log(error);
         }
     }
     async function getSpecificProduct() {
         try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
+            const resp = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`,
+                {
+                    next: { revalidate: 20 },
+                }
             );
-            return resp.data.data;
+            const data = await resp.json();
+            return data.data;
         } catch (error) {
             console.log(error);
         }

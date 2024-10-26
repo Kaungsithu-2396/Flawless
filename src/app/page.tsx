@@ -22,9 +22,13 @@ export default async function Home() {
         try {
             const resp = await fetch(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`,
-                { cache: "no-store" }
+                {
+                    next: {
+                        revalidate: 20,
+                    },
+                }
             );
-            // if (!resp.ok) throw new Error("category fetch fail");
+            if (!resp.ok) throw new Error("category fetch fail");
             const data = await resp.json();
             //@ts-ignore
             return data?.data;
@@ -36,7 +40,11 @@ export default async function Home() {
         try {
             const resp = await fetch(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`,
-                { cache: "no-store" }
+                {
+                    next: {
+                        revalidate: 20,
+                    },
+                }
             );
             if (!resp.ok) {
                 throw new Error("home image fetch fail");
@@ -52,22 +60,23 @@ export default async function Home() {
         try {
             const resp = await fetch(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/featured/products`,
-                { cache: "no-store" }
+                {
+                    next: {
+                        revalidate: 20,
+                    },
+                }
             );
             if (!resp.ok) {
                 throw new Error("featured product fetch fail");
             }
             const data = await resp.json();
+            console.log("fetching");
             //@ts-ignore
             return data.data;
         } catch (error) {
             console.log(error);
         }
     }
-    // useEffect(() => {
-    //     getFeaturedProducts();
-    //     getCategory();
-    // }, []);
 
     const featuredItems = (await getFeaturedProducts()) || [];
     const category = (await getCategory()) || [];
@@ -114,7 +123,7 @@ export default async function Home() {
                                     className=" w-full xl:gap-0 flex flex-col justify-center items-center gap-3 rounded-md bg-[#f5f4f4] px-5 md:px-0 py-4 md:py-3 mx-0 md:mx-5"
                                     key={index}
                                 >
-                                    <Image
+                                    <img
                                         src={el.categoryImage.url}
                                         width={100}
                                         height={100}
@@ -124,7 +133,10 @@ export default async function Home() {
                                     <p className="font-semibold ">{el.name}</p>
                                     <p className="  text-center text-sm   text-orange-500 hover:font-bold transition-all duration-200 delay-150">
                                         {" "}
-                                        <Link href={`/product/${el.name}`}>
+                                        <Link
+                                            href={`/product/${el.name}`}
+                                            prefetch={false}
+                                        >
                                             Explore More
                                         </Link>{" "}
                                     </p>
@@ -139,9 +151,7 @@ export default async function Home() {
                     src={
                         "https://res.cloudinary.com/doljsriiv/image/upload/v1729837964/svvfcg6ibrgqg71iae2f.jpg"
                     }
-                    width={100}
-                    height={100}
-                    className="object-cover h-[50%]  w-full "
+                    className=" h-[50%]"
                     alt="Image for product"
                 />
                 <div className="absolute w-full h-full bg-black/30 top-0"></div>
@@ -194,7 +204,10 @@ export default async function Home() {
                         })} */}
                         {featuredItems.map((el: product) => {
                             return (
-                                <Link href={`detail/${el._id}`}>
+                                <Link
+                                    href={`detail/${el._id}`}
+                                    prefetch={false}
+                                >
                                     <div className=" flex flex-col justify-center items-center w-full ">
                                         <div className=" w-full">
                                             <img

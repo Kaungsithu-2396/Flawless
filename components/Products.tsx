@@ -10,7 +10,6 @@ import LoadingUi from "./LoadingUi";
 export default function Products() {
     const searchParams = useSearchParams();
     const pageNo = searchParams.get("page") || 0;
-    const [refresh, setRefresh] = useState(false);
     const [products, setProducts] = useState<product[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [total, setTotal] = useState([]);

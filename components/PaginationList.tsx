@@ -19,14 +19,13 @@ export default function PaginationList({ dotCount }: { dotCount: Number }) {
                     <PaginationItem>
                         {[...Array(dotCount)].map((_, index) => {
                             return (
-                                <>
-                                    <PaginationLink
-                                        className="text-xl"
-                                        href={`/product?page=${index}`}
-                                    >
-                                        {index + 1}
-                                    </PaginationLink>
-                                </>
+                                <PaginationLink
+                                    className="text-xl"
+                                    key={index}
+                                    href={`/product?page=${index}`}
+                                >
+                                    {index + 1}
+                                </PaginationLink>
                             );
                         })}
                     </PaginationItem>

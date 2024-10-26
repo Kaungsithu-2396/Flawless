@@ -63,21 +63,19 @@ export default function Carousel({ images }: { images: [image] }) {
             >
                 {images?.map((el: image, idx) => {
                     return (
-                        <>
-                            <SwiperSlide key={idx}>
-                                <div className="">
-                                    <Image
-                                        src={el.image.url}
-                                        width={0}
-                                        height={0}
-                                        sizes="100vw"
-                                        className="object-cover h-full w-full"
-                                        alt="Image for product"
-                                        priority={true}
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        </>
+                        <SwiperSlide key={idx}>
+                            <div className="">
+                                <Image
+                                    src={el.image.url}
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw"
+                                    className="object-cover h-full w-full"
+                                    alt="Image for product"
+                                    priority={true}
+                                />
+                            </div>
+                        </SwiperSlide>
                     );
                 })}
             </Swiper>

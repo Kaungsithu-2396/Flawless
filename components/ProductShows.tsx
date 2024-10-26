@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { product } from "../types";
 import Product from "./Product";
 import PaginationList from "./PaginationList";
@@ -9,13 +10,13 @@ export default function ProductShows({
     paginatedDotsCount,
 }: {
     products: product[];
-    paginatedDotsCount: number;
+    paginatedDotsCount?: number;
 }) {
     const [sortOptions, setSortOptions] = useState<string>("");
     const [sortedItems, setSortedItems] = useState<product[]>(products);
+    const pathName = usePathname();
     const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSortOptions(e.target.value);
-        console.log(e.target.value);
     };
 
     useEffect(() => {
@@ -55,10 +56,13 @@ export default function ProductShows({
                         return <Product {...el} key={el._id} />;
                     })}
                 </div>
-
-                <div className="my-5">
-                    <PaginationList dotCount={paginatedDotsCount} />
-                </div>
+                {pathName === "/product" && (
+                    <div className="my-5">
+                        <PaginationList
+                            dotCount={paginatedDotsCount as Number}
+                        />
+                    </div>
+                )}
             </div>
         </section>
     );
