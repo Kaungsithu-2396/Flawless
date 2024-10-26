@@ -56,13 +56,13 @@ export default function ProductShows({
                         return <Product {...el} key={el._id} />;
                     })}
                 </div>
-                {pathName === "/product" && (
+                {/* {pathName === "/product" && (
                     <div className="my-5">
                         <PaginationList
                             dotCount={paginatedDotsCount as Number}
                         />
                     </div>
-                )}
+                )} */}
             </div>
         </section>
     );
