@@ -158,6 +158,9 @@ export default function Nav() {
                                                             <AccordionTrigger className="text-sm">
                                                                 <Link
                                                                     href={`/product/${el.name}`}
+                                                                    prefetch={
+                                                                        false
+                                                                    }
                                                                 >
                                                                     {el.name}
                                                                 </Link>
@@ -172,6 +175,9 @@ export default function Nav() {
                                                                         <>
                                                                             <Link
                                                                                 href={`/product/${el.name}/${item.name}`}
+                                                                                prefetch={
+                                                                                    false
+                                                                                }
                                                                             >
                                                                                 <AccordionContent className="mx-5">
                                                                                     {
