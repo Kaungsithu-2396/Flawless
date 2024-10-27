@@ -149,7 +149,11 @@ export default function CheckoutForm() {
                         </span>
                     </div>
 
-                    <Link href={"/"} className="underline">
+                    <Link
+                        href={"/installment"}
+                        prefetch={false}
+                        className="underline"
+                    >
                         Detail about Installment
                     </Link>
                     {errors.installmentPlan?.type === "required" && (

@@ -17,20 +17,26 @@ export default async function Layout({
 }>) {
     async function getCategories() {
         try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+            const resp = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`,
+                { next: { revalidate: 20 } }
             );
-            return resp.data.data;
+            if (!resp.ok) throw new Error("fetching product category error");
+            const data = await resp.json();
+            return data.data;
         } catch (error) {
             console.log(error);
         }
     }
     async function getSubCategories() {
         try {
-            const resp = await axios.get(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`
+            const resp = await fetch(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`,
+                { next: { revalidate: 20 } }
             );
-            return resp.data.data;
+            if (!resp.ok) throw new Error("fetching product category error");
+            const data = await resp.json();
+            return data.data;
         } catch (error) {
             console.log(error);
         }

@@ -32,8 +32,8 @@ export default function ProductShows({
         sortProduct();
     }, [sortOptions]);
     return (
-        <section>
-            <div className=" mb-5 md:m-0 right-6 md:absolute top-[-5.4rem]">
+        <section className="min-h-screen">
+            <div className=" mb-5 md:m-0 right-6 md:absolute top-[-5.4rem]  ">
                 <div className="">
                     <select
                         name=""
