@@ -214,6 +214,7 @@ export default function Nav() {
                                 className={` ${
                                     pathName === "/" && "font-bold"
                                 }`}
+                                prefetch={false}
                             >
                                 Home
                             </Link>
@@ -225,6 +226,7 @@ export default function Nav() {
                                 className={`${
                                     pathName === "/product" && "font-bold"
                                 }`}
+                                prefetch={false}
                             >
                                 Product
                             </Link>

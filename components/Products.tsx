@@ -84,7 +84,7 @@ export default async function Products() {
         try {
             const resp = await fetch(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
-                { next: { revalidate: 30 } }
+                { next: { revalidate: 20 } }
             );
 
             const data = await resp.json();

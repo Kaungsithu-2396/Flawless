@@ -62,7 +62,6 @@ export async function generateStaticParams() {
     paths.push(...categoryPaths);
     return paths;
 }
-export const revalidate = 20;
 
 export default async function page({
     params: { productGenre },
@@ -74,7 +73,7 @@ export default async function page({
     if (item2) {
         apiUrl += `&subCategory=${item2}`;
     }
-    const productResp = await fetch(apiUrl);
+    const productResp = await fetch(apiUrl, { next: { revalidate: 20 } });
     if (!productResp.ok) throw new Error("Failed to fetch products");
     const products = await productResp.json();
 

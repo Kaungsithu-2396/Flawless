@@ -161,7 +161,7 @@ export default async function Home() {
                         Authentic Items
                     </span>
                     <br />
-                    <Link href={"/product"}>
+                    <Link href={"/product"} prefetch={false}>
                         <button className="bg-white my-3 md:my-6 md:px-5 md:py-2 md:text-xl text-xs px-3 py-1 rounded-md hover:font-bold duration-300 delay-300 text-black">
                             Explore More
                         </button>
@@ -233,7 +233,7 @@ export default async function Home() {
                         })}
                     </div>
                     <div className="flex justify-center items-center pt-3">
-                        <Link href={"/product"}>
+                        <Link href={"/product"} prefetch={false}>
                             <Button className="font-bold  p-5    rounded-md">
                                 Explore More
                             </Button>

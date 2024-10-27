@@ -59,7 +59,10 @@ export default async function Layout({
                             <Accordion type="multiple" key={index}>
                                 <AccordionItem value="item-1">
                                     <AccordionTrigger className="text-sm">
-                                        <Link href={`/product/${el.name}`}>
+                                        <Link
+                                            href={`/product/${el.name}`}
+                                            prefetch={false}
+                                        >
                                             {el.name}
                                         </Link>
                                     </AccordionTrigger>
@@ -69,6 +72,7 @@ export default async function Layout({
                                                 <>
                                                     <Link
                                                         href={`/product/${el.name}/${item.name}`}
+                                                        prefetch={false}
                                                     >
                                                         <AccordionContent className="mx-5">
                                                             {item.name}
