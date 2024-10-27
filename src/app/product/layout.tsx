@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import Link from "next/link";
 import { category } from "../../../types";
-import axios from "axios";
+export const revalidate = 6;
 export default async function Layout({
     children,
     productNav,
@@ -18,8 +18,7 @@ export default async function Layout({
     async function getCategories() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`,
-                { next: { revalidate: 20 } }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
             );
             if (!resp.ok) throw new Error("fetching product category error");
             const data = await resp.json();
@@ -31,8 +30,7 @@ export default async function Layout({
     async function getSubCategories() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`,
-                { next: { revalidate: 20 } }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`
             );
             if (!resp.ok) throw new Error("fetching product category error");
             const data = await resp.json();

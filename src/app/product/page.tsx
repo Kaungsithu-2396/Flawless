@@ -4,8 +4,8 @@ import Products from "../../../components/Products";
 
 export default function page() {
     return (
-        <Suspense>
-            <Products />
-        </Suspense>
+        // <Suspense>
+        <Products />
+        // </Suspense>
     );
 }

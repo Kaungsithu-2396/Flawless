@@ -29,6 +29,7 @@
 //         </>
 //     );
 // }
+export const revalidate = 4;
 import React from "react";
 import ProductShows from "../../../../components/ProductShows";
 async function getCategoryAndSubCategory() {
@@ -73,7 +74,7 @@ export default async function page({
     if (item2) {
         apiUrl += `&subCategory=${item2}`;
     }
-    const productResp = await fetch(apiUrl, { next: { revalidate: 20 } });
+    const productResp = await fetch(apiUrl);
     if (!productResp.ok) throw new Error("Failed to fetch products");
     const products = await productResp.json();
 

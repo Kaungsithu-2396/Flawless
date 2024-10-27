@@ -80,40 +80,16 @@
 import React from "react";
 import ProductShows from "../components/ProductShows";
 export default async function Products() {
-    async function getProducts() {
-        try {
-            const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
-                { next: { revalidate: 20 } }
-            );
+    const resp = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
+        { next: { revalidate: 4 } }
+    );
 
-            const data = await resp.json();
-            return data.data;
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    const products = await getProducts();
+    const data = await resp.json();
+    const products = data.data;
     return (
         <>
             <ProductShows products={products} />
-
-            {/* {products.length > 0 ? (
-                <ProductShows
-                    products={products}
-                    paginatedDotsCount={paginatedDotsCount}
-                />
-            ) : (
-                <span>
-                    <h1>No items</h1>
-                    <Link
-                        href={`/product/?page=0`}
-                        onClick={() => setRefresh(true)}
-                    >
-                        Back to product
-                    </Link>
-                </span>
-            )} */}
         </>
     );
 }
