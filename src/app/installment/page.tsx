@@ -3,7 +3,7 @@ import React from "react";
 export default function page() {
     return (
         <section className="my-4 flex justify-center items-center flex-col md:h-screen">
-            <h1 className="text-center text-xl font-bold  sticky top-0 bg-slate-400 md:bg-slate-300 py-4 w-full ">
+            <h1 className="text-center text-xl font-bold  sticky top-0 bg-slate-400 md:bg-white  py-4 w-full ">
                 Agreement policy for installment
             </h1>
             <div className=" w-2/3 m-auto my-6">
