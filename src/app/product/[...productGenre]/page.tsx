@@ -29,7 +29,7 @@
 //         </>
 //     );
 // }
-export const revalidate = 4;
+export const revalidate = 10;
 import React from "react";
 import ProductShows from "../../../../components/ProductShows";
 async function getCategoryAndSubCategory() {

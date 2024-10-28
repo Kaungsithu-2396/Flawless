@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
 import ProductDetail from "../../../../components/ProductDetail";
 import RelatedProducts from "../../../../components/RelatedProducts";
+import { redirect } from "next/navigation";
 export async function generateStaticParams() {
     const product = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
         };
     });
 }
-export const revalidate = 20;
+export const revalidate = 5;
 export default async function page({
     params: { productId },
 }: {
@@ -26,6 +27,9 @@ export default async function page({
     const resp = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
     );
+    if (!resp.ok) {
+        redirect("/errorDetail");
+    }
     const data = await resp.json();
 
     const items = data.data;
@@ -34,8 +38,11 @@ export default async function page({
             <Toaster />
             <div className="w-screen bg-[#353839] text-white p-5">
                 <h1 className="">
-                    <Link href={"/"}>Home </Link> /{" "}
-                    <Link href={"/product"}>
+                    <Link href={"/"} prefetch={false}>
+                        Home{" "}
+                    </Link>{" "}
+                    /{" "}
+                    <Link href={"/product"} prefetch={false}>
                         {" "}
                         <span className="">Products /</span>
                     </Link>

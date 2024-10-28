@@ -62,7 +62,7 @@ export default async function Home() {
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/featured/products`,
                 {
                     next: {
-                        revalidate: 4,
+                        revalidate: 10,
                     },
                 }
             );
