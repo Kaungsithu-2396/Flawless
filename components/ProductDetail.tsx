@@ -15,7 +15,6 @@ export default function ProductDetail({ product }: { product?: product }) {
     if (!product) {
         return;
     }
-    console.log(product, "products");
     const stock = product.stock;
     const router = useRouter();
     const [count, setCount] = useState<number>(1);

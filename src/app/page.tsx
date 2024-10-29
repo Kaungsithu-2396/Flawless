@@ -21,12 +21,7 @@ export default async function Home() {
     async function getCategory() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`,
-                {
-                    next: {
-                        revalidate: 4,
-                    },
-                }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
             );
             if (!resp.ok) throw new Error("category fetch fail");
             const data = await resp.json();
@@ -39,12 +34,7 @@ export default async function Home() {
     async function getHomeImages() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`,
-                {
-                    next: {
-                        revalidate: 20,
-                    },
-                }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
             );
             if (!resp.ok) {
                 throw new Error("home image fetch fail");
@@ -59,12 +49,7 @@ export default async function Home() {
     async function getFeaturedProducts() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/featured/products`,
-                {
-                    next: {
-                        revalidate: 10,
-                    },
-                }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/featured/products`
             );
             if (!resp.ok) {
                 throw new Error("featured product fetch fail");

@@ -81,12 +81,7 @@ import React from "react";
 import ProductShows from "../components/ProductShows";
 import { draftMode } from "next/headers";
 export default async function Products() {
-    const draft = await draftMode();
-    const resp = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
-        { next: { revalidate: 10 } }
-    );
-    draft.enable();
+    const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product`);
     const data = await resp.json();
     const products = data.data;
     return (

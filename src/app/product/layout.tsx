@@ -32,7 +32,7 @@ export default async function Layout({
             const resp = await fetch(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`
             );
-            if (!resp.ok) throw new Error("fetching product category error");
+            if (!resp.ok) throw new Error("fetching product sub category error");
             const data = await resp.json();
             return data.data;
         } catch (error) {
