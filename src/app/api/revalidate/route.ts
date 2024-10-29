@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
     const path = request.nextUrl.searchParams.get("path");
+    console.log(path);
     if (path) {
         const pathArr = path.split(",");
         pathArr.forEach((el) => revalidatePath(el.trim()));
