@@ -13,7 +13,7 @@ type categories = {
         url: string;
     };
 };
-
+export const revalidate = 30;
 export default async function page() {
     // const [category, setCategory] = useState([]);
     // const [data, setData] = useState<any>([]);

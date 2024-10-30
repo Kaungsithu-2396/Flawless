@@ -16,7 +16,7 @@ export async function generateStaticParams() {
         };
     });
 }
-export const revalidate = 5;
+export const revalidate = 30;
 export default async function page({
     params: { productId },
 }: {

@@ -29,9 +29,10 @@
 //         </>
 //     );
 // }
-export const revalidate = 10;
+
 import React from "react";
 import ProductShows from "../../../../components/ProductShows";
+export const revalidate = 30;
 async function getCategoryAndSubCategory() {
     const categoryURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`;
     const subCategoryURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`;
@@ -74,11 +75,7 @@ export default async function page({
     if (item2) {
         apiUrl += `&subCategory=${item2}`;
     }
-    const productResp = await fetch(apiUrl, {
-        next: {
-            tags: ["product"],
-        },
-    });
+    const productResp = await fetch(apiUrl);
     if (!productResp.ok) throw new Error("Failed to fetch products");
     const products = await productResp.json();
 
