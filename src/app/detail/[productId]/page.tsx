@@ -25,7 +25,12 @@ export default async function page({
     };
 }) {
     const resp = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${productId}`,
+        {
+            next: {
+                tags: [`detail-${productId}`],
+            },
+        }
     );
     if (!resp.ok) {
         redirect("/errorDetail");

@@ -14,14 +14,19 @@ type categories = {
     };
 };
 
-export default async function Home() {
+export default async function page() {
     // const [category, setCategory] = useState([]);
     // const [data, setData] = useState<any>([]);
     // const [loadingCategory, setLoadingCategory] = useState(false);
     async function getCategory() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`,
+                {
+                    next: {
+                        tags: ["category"],
+                    },
+                }
             );
             if (!resp.ok) throw new Error("category fetch fail");
             const data = await resp.json();
@@ -34,7 +39,12 @@ export default async function Home() {
     async function getHomeImages() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`,
+                {
+                    next: {
+                        tags: ["home"],
+                    },
+                }
             );
             if (!resp.ok) {
                 throw new Error("home image fetch fail");

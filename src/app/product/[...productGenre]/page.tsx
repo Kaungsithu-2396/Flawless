@@ -74,7 +74,11 @@ export default async function page({
     if (item2) {
         apiUrl += `&subCategory=${item2}`;
     }
-    const productResp = await fetch(apiUrl);
+    const productResp = await fetch(apiUrl, {
+        next: {
+            tags: ["product"],
+        },
+    });
     if (!productResp.ok) throw new Error("Failed to fetch products");
     const products = await productResp.json();
 
