@@ -32,7 +32,7 @@
 
 import React from "react";
 import ProductShows from "../../../../components/ProductShows";
-// export const revalidate = 30;
+export const revalidate = 30;
 async function getCategoryAndSubCategory() {
     const categoryURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`;
     const subCategoryURL = `${process.env.NEXT_PUBLIC_BASE_URL}/api/subCategory`;

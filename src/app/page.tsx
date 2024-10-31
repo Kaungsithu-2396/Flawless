@@ -11,7 +11,7 @@ type categories = {
         url: string;
     };
 };
-// export const revalidate = 30;
+export const revalidate = 30;
 export default async function page() {
     // const [category, setCategory] = useState([]);
     // const [data, setData] = useState<any>([]);
@@ -75,30 +75,6 @@ export default async function page() {
                     </h1>
                 </span>
                 <section className="  md:w-auto py-5 mx-2 grid grid-cols-3 md:grid-cols-4  justify-center items-center gap-2 md:gap-4 md:mx-8">
-                    {/* {[...Array(4)].map((_, index) => {
-                        return (
-                            <div
-                                className=" w-full xl:gap-0 flex flex-col justify-center items-center gap-3 rounded-md bg-[#f5f4f4] px-5 md:px-0 py-4 md:py-3 mx-0 md:mx-5"
-                                key={index}
-                            >
-                                <Image
-                                    src={"/category.png"}
-                                    width={100}
-                                    height={100}
-                                    alt="Category image"
-                                    className=" w-[50%] m-auto hover:scale-110 duration-200 delay-200 cursor-pointer xl:w-[40%] "
-                                />
-                                <p className="font-semibold ">Rings</p>
-                                <p className="  text-center text-sm   text-orange-500 hover:font-bold transition-all duration-200 delay-150">
-                                    {" "}
-                                    <Link href={"/product/Rings"}>
-                                        Explore More
-                                    </Link>{" "}
-                                </p>
-                            </div>
-                        );
-                    })} */}
-
                     {category.map((el: categories, index: Key) => {
                         return (
                             <div className="">
@@ -158,33 +134,6 @@ export default async function page() {
                 </h1>
                 <div>
                     <div className="  m-6 grid grid-cols-2 gap-2  md:grid-cols-3 xl:grid-cols-3 ">
-                        {/* {[...Array(6)].map((_, index: Key) => {
-                            return (
-                                <div
-                                    className=" flex flex-col justify-center items-center"
-                                    key={index}
-                                >
-                                    <div className="bg-[#f5f5f4] w-full">
-                                        <Image
-                                            src={"/category.png"}
-                                            width={100}
-                                            height={100}
-                                            className="  md:w-[50%] m-auto   px- py-3  object-cover text-center "
-                                            alt="Product image"
-                                        />
-                                    </div>
-                                    <p className="font-bold py-3 text-slate-500  text-sm  text-center">
-                                        Diamond Ring
-                                    </p>
-
-                                    <div className="">
-                                        <p className="font-bold   md:text-xl text-center">
-                                            ฿ 30000
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })} */}
                         {featuredItems.map((el: product) => {
                             return (
                                 <Link
