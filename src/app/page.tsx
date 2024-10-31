@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Carousel from "../../components/pages/Home/Carousel";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import axios from "axios";
 import { Key } from "react";
 import { product } from "../../types";
 import { useEffect, useState } from "react";
@@ -13,7 +11,7 @@ type categories = {
         url: string;
     };
 };
-export const revalidate = 30;
+// export const revalidate = 30;
 export default async function page() {
     // const [category, setCategory] = useState([]);
     // const [data, setData] = useState<any>([]);
@@ -21,12 +19,7 @@ export default async function page() {
     async function getCategory() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`,
-                {
-                    next: {
-                        tags: ["category"],
-                    },
-                }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/category`
             );
             if (!resp.ok) throw new Error("category fetch fail");
             const data = await resp.json();
@@ -39,12 +32,7 @@ export default async function page() {
     async function getHomeImages() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`,
-                {
-                    next: {
-                        tags: ["home"],
-                    },
-                }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
             );
             if (!resp.ok) {
                 throw new Error("home image fetch fail");
