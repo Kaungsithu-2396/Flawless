@@ -1,3 +1,4 @@
+export const revalidate = 30;
 import Link from "next/link";
 import Carousel from "../../components/pages/Home/Carousel";
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,6 @@ type categories = {
         url: string;
     };
 };
-export const revalidate = 30;
 export default async function page() {
     // const [category, setCategory] = useState([]);
     // const [data, setData] = useState<any>([]);
