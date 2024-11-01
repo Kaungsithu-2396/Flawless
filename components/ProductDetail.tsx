@@ -76,6 +76,7 @@ export default function ProductDetail({ product }: { product?: product }) {
                 <div className="">
                     <ProductImageZoom images={product.productImageCol} />
                 </div>
+
                 <div className=" flex flex-col gap-6">
                     <span>
                         <h1 className="font-bold text-xl">{product.name}</h1>
@@ -83,6 +84,9 @@ export default function ProductDetail({ product }: { product?: product }) {
                     </span>
 
                     <p className="text-xl font-bold">{product.price} ฿</p>
+                    <p className="text-red-500">
+                        *price may vary please contact to us for updated price
+                    </p>
                     <p className="text-xl">Stock : {product.stock} Item</p>
                     <div className="flex justify-start gap-10 items-center">
                         <button
