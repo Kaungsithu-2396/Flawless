@@ -1,3 +1,4 @@
+export const revalidate = 30;
 import React from "react";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/sonner";
@@ -16,7 +17,7 @@ export async function generateStaticParams() {
         };
     });
 }
-export const revalidate = 30;
+
 export default async function page({
     params: { productId },
 }: {

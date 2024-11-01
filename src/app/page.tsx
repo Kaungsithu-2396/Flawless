@@ -4,7 +4,7 @@ import Carousel from "../../components/pages/Home/Carousel";
 import { Button } from "@/components/ui/button";
 import { Key } from "react";
 import { product } from "../../types";
-import { useEffect, useState } from "react";
+
 type categories = {
     _id: string;
     name: string;
@@ -32,7 +32,12 @@ export default async function page() {
     async function getHomeImages() {
         try {
             const resp = await fetch(
-                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/home`,
+                {
+                    next: {
+                        revalidate: 60,
+                    },
+                }
             );
             if (!resp.ok) {
                 throw new Error("home image fetch fail");
