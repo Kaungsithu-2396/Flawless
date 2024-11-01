@@ -79,7 +79,6 @@
 //optimized code
 import React from "react";
 import ProductShows from "../components/ProductShows";
-import { draftMode } from "next/headers";
 export const revalidate = 30;
 export default async function Products() {
     const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product`);

@@ -1,20 +1,19 @@
 import { revalidatePath } from "next/cache";
-import type { NextRequest } from "next/server";
-export async function POST(request: NextRequest) {
-    try {
-        const { paths } = await request.json();
-        console.log(paths);
-        for (const path of paths) {
-            revalidatePath(encodeURI(path));
-        }
-        return Response.json({
-            revalidated: true,
-            now: Date.now(),
-        });
-    } catch (error) {
-        return Response.json({
-            revalidated: false,
-            now: Date.now(),
-        });
-    }
+import { NextRequest } from "next/server";
+
+export async function GET(request: NextRequest) {
+    revalidatePath("/product");
+    return Response.json({ revalidated: true, now: Date.now() });
+    //     const path = request.nextUrl.searchParams.get("path");
+
+    //     if (path) {
+    //         revalidatePath("/product");
+    //         return Response.json({ revalidated: true, now: Date.now() });
+    //     }
+
+    //     return Response.json({
+    //         revalidated: false,
+    //         now: Date.now(),
+    //         message: "Missing path to revalidate",
+    //     });
 }
